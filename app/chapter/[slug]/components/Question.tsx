@@ -6,10 +6,12 @@ import { QuestionType } from "../page";
 
 export default function Question({ question }: { question: QuestionType }) {
   const answearRef = useRef<HTMLInputElement>(null);
+
   const blurHandler = () => {
     if (localStorage.getItem("word-checking") === "manual") return;
     if (!answearRef.current!.value) return;
-    if (answearRef.current!.value === question.answear) {
+    const value = answearRef.current!.value.toLowerCase();
+    if (value === question.answear) {
       answearRef.current!.className += " text-10";
     } else {
       answearRef.current!.style.color = "red";
@@ -18,6 +20,7 @@ export default function Question({ question }: { question: QuestionType }) {
     answearRef.current!.disabled = true;
     answearRef.current!.parentElement!.className += " bg-30 text-60 w-fit";
   };
+
   const changeHandler = () => {
     if (localStorage.getItem("word-checking") !== "auto") return;
     console.log("auto spell check");
