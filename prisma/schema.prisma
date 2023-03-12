@@ -45,3 +45,12 @@ model Section {
   created_at     DateTime  @default(now())
   updated_at     DateTime  @default(now()) @updatedAt
 }
+
+model Profile {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nickname   String   @unique
+  email      String   @unique
+  exp        Int      @default(0)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+}

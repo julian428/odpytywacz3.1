@@ -13,8 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <UserProvider>
-      <html lang="pl">
-        <body className="bg-60 flex flex-col overflow-hidden">
+      <html
+        lang="pl"
+        className="w-screen h-screen flex flex-col items-center"
+      >
+        <body className="bg-60 flex flex-col overflow-hidden items-center">
           <header className="w-screen">
             <MainNav />
           </header>

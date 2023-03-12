@@ -5,7 +5,7 @@
 - score table
 - levels and xp
 - testing
-- profile pic instead of hamburger menu button
 - filter chapters
 - auto spell checking
-- manual spell checking
+- download chapter to csv
+- global prisma state

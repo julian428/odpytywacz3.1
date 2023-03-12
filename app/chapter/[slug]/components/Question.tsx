@@ -1,24 +1,22 @@
 "use client";
 
 import StandardInput from "@/app/ui/input";
-import { useRef } from "react";
+import { Dispatch, SetStateAction, useRef } from "react";
 import { QuestionType } from "../page";
+import { wordCheck } from "./QuestionList";
 
-export default function Question({ question }: { question: QuestionType }) {
+interface Props {
+  question: QuestionType;
+  setPoints: Dispatch<SetStateAction<number>>;
+}
+
+export default function Question({ question, setPoints }: Props) {
   const answearRef = useRef<HTMLInputElement>(null);
 
   const blurHandler = () => {
     if (localStorage.getItem("word-checking") === "manual") return;
     if (!answearRef.current!.value) return;
-    const value = answearRef.current!.value.toLowerCase();
-    if (value === question.answear) {
-      answearRef.current!.className += " text-10";
-    } else {
-      answearRef.current!.style.color = "red";
-      answearRef.current!.value += " => " + question.answear;
-    }
-    answearRef.current!.disabled = true;
-    answearRef.current!.parentElement!.className += " bg-30 text-60 w-fit";
+    wordCheck(question, answearRef.current, setPoints);
   };
 
   const changeHandler = () => {

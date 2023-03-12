@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { PrismaClient } from "@prisma/client";
-import Question from "./components/Question";
+import QuestionList from "./components/QuestionList";
 
 const prisma = new PrismaClient();
 
@@ -55,16 +55,14 @@ export async function getChapter(chapterId: string) {
 export default async function Chapter({ params }: Props) {
   const chapter = await getChapter(params.slug.split("_")[2]);
   if (!chapter) throw new Error("Couldnt fetch chapter");
-  return (
-    <>
+  if (chapter.owned_questions.length < 1) {
+    return (
       <article className=" w-96 text-30 mt-4 flex flex-col gap-4 items-center">
-        {chapter.owned_questions.map((question: QuestionType) => (
-          <Question
-            question={question}
-            key={question.id}
-          />
-        ))}
+        <center>
+          <h1>Ten rozdział nie ma żadnych pytań.</h1>
+        </center>
       </article>
-    </>
-  );
+    );
+  }
+  return <QuestionList chapter={chapter} />;
 }

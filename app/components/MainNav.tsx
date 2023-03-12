@@ -4,7 +4,7 @@ import MenuLooks from "./MenuLooks";
 
 export default function MainNav() {
   return (
-    <nav className="bg-60 flex justify-between px-4 items-center text-2xl py-2 text-30 border-b border-30">
+    <nav className="bg-60 w-screen flex justify-between px-4 items-center text-2xl py-2 text-30 border-b border-30">
       <Link
         href="/"
         replace
