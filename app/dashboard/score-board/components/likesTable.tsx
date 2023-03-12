@@ -17,7 +17,7 @@ export default function LikesTable({ chapters }: Props) {
   const n = chapters.length;
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
-      if (TopChapters[j].likes < TopChapters[j + 1]) {
+      if (TopChapters[j].likes < TopChapters[j + 1].likes) {
         const swap = TopChapters[j];
         TopChapters[j] = TopChapters[j + 1];
         TopChapters[j + 1] = swap;

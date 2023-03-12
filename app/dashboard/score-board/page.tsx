@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import ExpTable from "./components/expTable";
 import LikesTable from "./components/likesTable";
 import TimeTable from "./components/timeTable";
 
@@ -40,13 +41,28 @@ export async function getChapters() {
   return chaptersTimes;
 }
 
+export async function getUsers() {
+  const prisma = new PrismaClient();
+  const users = await prisma.profile.findMany({
+    select: {
+      id: true,
+      nickname: true,
+      exp: true,
+    },
+  });
+  return users;
+}
+
 export default async function ScoreBoardPage() {
   const chapters = await getChapters();
+  const users = await getUsers();
   return (
     <center className="mt-4 flex flex-col gap-8">
       <TimeTable chaptersTimes={chapters} />
       <hr />
       <LikesTable chapters={chapters} />
+      <hr />
+      <ExpTable users={users} />
     </center>
   );
 }

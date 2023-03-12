@@ -8,7 +8,6 @@ interface Props {
 }
 
 export default function LikesScore({ chapters }: Props) {
-  console.log(chapters);
   return (
     <table className="w-96 border text-center text-30">
       <tr className="h-4">
