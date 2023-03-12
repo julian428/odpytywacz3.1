@@ -2,8 +2,6 @@ import { notFound } from "next/navigation";
 import { PrismaClient } from "@prisma/client";
 import QuestionList from "./components/QuestionList";
 
-const prisma = new PrismaClient();
-
 interface Props {
   params: {
     slug: string;
@@ -22,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<any> {
 }
 
 export async function getChapter(chapterId: string) {
-  console.log(chapterId);
+  const prisma = new PrismaClient();
   try {
     const chapter = await prisma.chapter.findUnique({
       where: {
@@ -54,7 +52,7 @@ export async function getChapter(chapterId: string) {
 
 export default async function Chapter({ params }: Props) {
   const chapter = await getChapter(params.slug.split("_")[2]);
-  if (!chapter) throw new Error("Couldnt fetch chapter");
+  if (!chapter) notFound();
   if (chapter.owned_questions.length < 1) {
     return (
       <article className=" w-96 text-30 mt-4 flex flex-col gap-4 items-center">

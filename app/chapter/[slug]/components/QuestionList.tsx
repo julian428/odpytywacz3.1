@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import {
   Dispatch,
   FormEvent,
-  RefObject,
   SetStateAction,
   useEffect,
   useRef,
@@ -55,6 +54,7 @@ export function wordCheck(
 export default function QuestionList({ chapter }: Props) {
   const [points, setPoints] = useState({ correct: 0, wrong: 0 });
   const [openModal, setOpenModal] = useState(false);
+  const [time, setTime] = useState(new Date().getTime());
   const buttonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
   const { user } = useUser();
@@ -74,17 +74,30 @@ export default function QuestionList({ chapter }: Props) {
 
   useEffect(() => {
     if (points.correct + points.wrong < chapter.owned_questions.length) return;
+    const fTime = new Date().getTime() - time;
+    setTime(fTime);
     buttonRef.current!.style.display = "none";
     setOpenModal(true);
-    if (user) {
-      fetch("/api/add-xp", {
+    const setData = async () => {
+      if (points.correct === 0 || !user) return;
+      const res1 = await fetch("/api/add-xp", {
         method: "POST",
         body: JSON.stringify({
           user,
           xp: points.correct,
         }),
       });
-    }
+      if (points.correct !== chapter.owned_questions.length) return;
+      const res2 = await fetch("/api/top-times", {
+        method: "POST",
+        body: JSON.stringify({
+          user: user.nickname,
+          time: fTime,
+          chapterId: chapter.id,
+        }),
+      });
+    };
+    setData();
   }, [points]);
 
   return (
@@ -115,7 +128,9 @@ export default function QuestionList({ chapter }: Props) {
         handleClose={handleModalClose}
         title={`Zakończyłeś ${chapter.title}`}
         text={
-          user ? `Zdobyłeś ${points.correct}xp` : "Zaloguj się żeby zdobywać xp"
+          user
+            ? `Zdobyłeś ${points.correct}xp w ${time / 1000}s`
+            : "Zaloguj się żeby zdobywać xp"
         }
       />
     </>

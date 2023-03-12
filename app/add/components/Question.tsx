@@ -1,5 +1,7 @@
+"use client";
+
 import StandardSmallInput from "@/app/ui/smallInput";
-import { ChangeEvent, MouseEvent } from "react";
+import { ChangeEvent, MouseEvent, useState } from "react";
 import { AiFillDelete as DelteIcon } from "react-icons/ai";
 
 interface Props {
@@ -7,10 +9,6 @@ interface Props {
     question: string;
     answear: string;
   };
-  state: {
-    question: string;
-    answear: string;
-  }[];
   setState: any;
   updateState: any;
   index: number;
@@ -19,38 +17,54 @@ interface Props {
 export default function Question({
   updateState,
   question,
-  state,
   setState,
   index,
 }: Props) {
+  const [helper, setHelper] = useState(0);
+
   const questionHandler = (event: ChangeEvent) => {
-    const q = state;
-    q[index].question = event.target.value;
-    setState(q);
+    updateState((state: number) => state + 1);
+    setHelper((state: number) => state + 1);
+    setState((state: any) => {
+      const q = state;
+      q[index].question = event.target.value;
+      return q;
+    });
   };
   const answearHandler = (event: ChangeEvent) => {
-    const q = state;
-    q[index].answear = event.target.value;
-    setState(q);
+    updateState((state: number) => state + 1);
+    setHelper((state: number) => state + 1);
+    setState((state: any) => {
+      const q = state;
+      q[index].answear = event.target.value;
+      return q;
+    });
   };
   const deleteHandler = (event: MouseEvent) => {
-    updateState(Math.round(Math.random() * 100));
-    let q = state;
-    q = q.filter((a) => a !== question);
-    console.log(q);
-    setState(q);
+    updateState((state: number) => state + 1);
+    setHelper((state: number) => state + 1);
+    setState((state: any) => {
+      let q = state;
+      q = q.filter((a: any) => a !== question);
+      console.log(q);
+      return q;
+    });
   };
   return (
     <section className="flex gap-1">
       <StandardSmallInput
         required
         placeholder="pytanie"
-        params={{ onChange: questionHandler }}
+        params={{
+          onChange: questionHandler,
+        }}
       />
       <StandardSmallInput
         required
         placeholder="odpowiedź"
-        params={{ onChange: answearHandler }}
+        params={{
+          onChange: answearHandler,
+        }}
       />
       <button
         type="button"

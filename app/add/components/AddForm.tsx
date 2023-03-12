@@ -71,7 +71,15 @@ export default function AddForm({ sections }: Props) {
   if (!user) {
     return (
       <center>
-        <p>Please log in to add a chapter</p>
+        <p>Zaloguj się żeby stworzyć rozdział</p>
+      </center>
+    );
+  }
+
+  if (!sections || !sections.length) {
+    return (
+      <center>
+        <p>Nie znaleziono żadnych sekcji</p>
       </center>
     );
   }
@@ -121,7 +129,6 @@ export default function AddForm({ sections }: Props) {
           <Question
             question={question}
             updateState={setHelper}
-            state={questions}
             setState={setQuestions}
             index={index}
             key={index}

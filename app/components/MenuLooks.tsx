@@ -7,11 +7,35 @@ interface Props {
   profiles: { email: string; nickname: string; exp: number }[];
 }
 
+export function abbreviateNumber(value: number) {
+  let newValue: number | string = value;
+  if (value >= 1000) {
+    let suffixes = ["", "k", "m", "b", "t"];
+    let suffixNum = Math.floor(("" + value).length / 3);
+    let shortValue: number | string = 0;
+    for (let precision = 2; precision >= 1; precision--) {
+      shortValue = parseFloat(
+        (suffixNum != 0
+          ? value / Math.pow(1000, suffixNum)
+          : value
+        ).toPrecision(precision)
+      );
+      let dotLessShortValue = (shortValue + "").replace(/[^a-zA-Z 0-9]+/g, "");
+      if (dotLessShortValue.length <= 2) {
+        break;
+      }
+    }
+    if (shortValue % 1 != 0) shortValue = shortValue.toFixed(1);
+    newValue = shortValue + suffixes[suffixNum];
+  }
+  return newValue;
+}
+
 export default function MenuLooks({ profiles }: Props) {
   const { user } = useUser();
   const [xp, setXp] = useState(0);
   useEffect(() => {
-    if (!user || !profiles) return;
+    if (!user || !profiles || !profiles.length) return;
     setXp(
       profiles.filter((profile: any) => profile.email === user?.email)[0].exp
     );
@@ -22,7 +46,7 @@ export default function MenuLooks({ profiles }: Props) {
     return (
       <section className="w-10 h-10 rounded-full relative">
         <div className="rounded-full gap-0 flex flex-col justify-center items-center text-xs text-10  w-6 h-6 bg-60 -top-2 -right-2 absolute">
-          <p>{xp}</p>
+          <p>{abbreviateNumber(xp)}</p>
         </div>
         <img
           src={user.picture || defaultPic}

@@ -1,8 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const prisma = new PrismaClient();
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -10,6 +8,8 @@ export default async function handler(
   if (req.method !== "POST")
     return res.status(400).json({ errorMessage: "Unknown endpoint" });
   const data = await JSON.parse(req.body);
+  const prisma = new PrismaClient();
+
   const profile = await prisma.profile.findUnique({
     where: {
       email: data.user.email,

@@ -1,14 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import AddForm from "./components/AddForm";
 
-const prisma = new PrismaClient();
-
 export interface SectionType {
   id: string;
   name: string;
 }
 
 export async function getSections() {
+  const prisma = new PrismaClient();
   const sections = await prisma.section.findMany({
     select: {
       id: true,

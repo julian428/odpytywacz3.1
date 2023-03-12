@@ -18,6 +18,7 @@ model Chapter {
   id              String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   owner           String
   likes           Like[]
+  times           TopTime[]
   title           String
   public          Boolean    @default(true)
   section_id      String     @db.Uuid
@@ -51,6 +52,16 @@ model Profile {
   nickname   String   @unique
   email      String   @unique
   exp        Int      @default(0)
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+}
+
+model TopTime {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  nickname   String
+  chapter_id String   @db.Uuid
+  chapter    Chapter  @relation(fields: [chapter_id], references: [id], onDelete: Cascade)
+  time       Int
   created_at DateTime @default(now())
   updated_at DateTime @default(now()) @updatedAt
 }
