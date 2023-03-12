@@ -4,7 +4,8 @@
 - edit chapter modal
 - score table
 - levels and xp
-- likes
 - testing
 - profile pic instead of hamburger menu button
 - filter chapters
+- auto spell checking
+- manual spell checking

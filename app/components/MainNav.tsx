@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { AiOutlineSearch as Logo } from "react-icons/ai";
-import { RxHamburgerMenu as Menu } from "react-icons/rx";
-import Login from "./Login";
+import MenuLooks from "./MenuLooks";
 
 export default function MainNav() {
   return (
@@ -19,7 +18,7 @@ export default function MainNav() {
           href="/dashboard"
           replace
         >
-          <Menu />
+          <MenuLooks />
         </Link>
       </section>
     </nav>
