@@ -7,7 +7,12 @@ import { wordCheck } from "./QuestionList";
 
 interface Props {
   question: QuestionType;
-  setPoints: Dispatch<SetStateAction<number>>;
+  setPoints: Dispatch<
+    SetStateAction<{
+      correct: number;
+      wrong: number;
+    }>
+  >;
 }
 
 export default function Question({ question, setPoints }: Props) {
