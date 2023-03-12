@@ -50,31 +50,6 @@ export default function TableScores({ chapterTimes }: Props) {
         <td className="border">{times[4]?.nickname || "-"}</td>
         <td className="border">{times[4]?.time || "-"}</td>
       </tr>
-      <tr className="h-4">
-        <td className="border">6</td>
-        <td className="border">{times[5]?.nickname || "-"}</td>
-        <td className="border">{times[5]?.time || "-"}</td>
-      </tr>
-      <tr className="h-4">
-        <td className="border">7</td>
-        <td className="border">{times[6]?.nickname || "-"}</td>
-        <td className="border">{times[6]?.time || "-"}</td>
-      </tr>
-      <tr className="h-4">
-        <td className="border">9</td>
-        <td className="border">{times[7]?.nickname || "-"}</td>
-        <td className="border">{times[7]?.time || "-"}</td>
-      </tr>
-      <tr className="h-4">
-        <td className="border">9</td>
-        <td className="border">{times[8]?.nickname || "-"}</td>
-        <td className="border">{times[8]?.time || "-"}</td>
-      </tr>
-      <tr className="h-4">
-        <td className="border">10</td>
-        <td className="border">{times[9]?.nickname || "-"}</td>
-        <td className="border">{times[9]?.time || "-"}</td>
-      </tr>
     </table>
   );
 }

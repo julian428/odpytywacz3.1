@@ -40,7 +40,7 @@ export default function TimeTable({ chaptersTimes }: Props) {
         })}
       </StandardSelect>
       <h2 className="mt-2 text-30">
-        Top 10 najszybszych rozwiązań w danym rozdziale.
+        Top 5 najszybszych rozwiązań w danym rozdziale.
       </h2>
       <TableScores chapterTimes={currentChapter} />
     </article>

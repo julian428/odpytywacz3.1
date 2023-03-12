@@ -31,7 +31,7 @@ export default async function RootLayout({
         lang="pl"
         className="w-screen h-screen flex flex-col items-center"
       >
-        <body className="bg-60 flex flex-col overflow-hidden items-center">
+        <body className="bg-60 flex flex-col overflow-x-hidden overflow-y-auto scrollbar-none items-center">
           <header className="w-screen">
             <MainNav profiles={profiles} />
           </header>

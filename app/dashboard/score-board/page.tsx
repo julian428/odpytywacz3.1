@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import LikesTable from "./components/likesTable";
 import TimeTable from "./components/timeTable";
 
 export interface ChapterTimesType {
@@ -15,7 +16,7 @@ export interface ChapterTimesType {
   }[];
 }
 
-export async function getChapterTimes() {
+export async function getChapters() {
   const prisma = new PrismaClient();
   const chaptersTimes = await prisma.chapter.findMany({
     select: {
@@ -40,10 +41,12 @@ export async function getChapterTimes() {
 }
 
 export default async function ScoreBoardPage() {
-  const chaptersTimes = await getChapterTimes();
+  const chapters = await getChapters();
   return (
-    <center className="mt-4">
-      <TimeTable chaptersTimes={chaptersTimes} />
+    <center className="mt-4 flex flex-col gap-8">
+      <TimeTable chaptersTimes={chapters} />
+      <hr />
+      <LikesTable chapters={chapters} />
     </center>
   );
 }

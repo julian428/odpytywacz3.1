@@ -14,7 +14,7 @@ export default async function handler(
       chapter_id: data.chapterId,
     },
   });
-  if (chapterTimes.length < 10) {
+  if (chapterTimes.length < 5) {
     const addedTime = await prisma.topTime.create({
       data: {
         nickname: data.user,
