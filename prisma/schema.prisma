@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Like {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  user      String
+  Chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  chapterId String  @db.Uuid
+}
+
+model Chapter {
+  id              String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  owner           String
+  likes           Like[]
+  title           String
+  public          Boolean    @default(true)
+  section_id      String     @db.Uuid
+  section         Section    @relation(fields: [section_id], references: [id], onDelete: NoAction)
+  owned_questions Question[]
+  description     String
+  created_at      DateTime   @default(now())
+  updated_at      DateTime   @default(now()) @updatedAt
+}
+
+model Question {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  owner_id   String   @db.Uuid
+  owner      Chapter  @relation(fields: [owner_id], references: [id], onDelete: Cascade)
+  question   String
+  answear    String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+}
+
+model Section {
+  id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  owned_chapters Chapter[]
+  name           String
+  created_at     DateTime  @default(now())
+  updated_at     DateTime  @default(now()) @updatedAt
+}
