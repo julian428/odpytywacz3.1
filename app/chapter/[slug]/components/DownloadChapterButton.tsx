@@ -22,7 +22,7 @@ export default function DownloadChapterButton({ chapter }: Props) {
   return (
     <center>
       <StandardModal
-        label={"Pobierz CSV"}
+        textLabel={"Pobierz CSV"}
         title="Wybierz ustawienia pobierania"
         buttonStyle="px-4 py-1 border border-10 rounded text-10 mb-8"
       >

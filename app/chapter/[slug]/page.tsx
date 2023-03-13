@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<any> {
   return { title: `${titleArray[1]} | ${titleArray[0]}` };
 }
 
-export async function getChapter(chapterId: string) {
+async function getChapter(chapterId: string) {
   try {
     const chapter = await prisma.chapter.findUnique({
       where: {

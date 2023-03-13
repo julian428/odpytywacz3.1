@@ -17,7 +17,7 @@ export interface ChapterTimesType {
   }[];
 }
 
-export async function getChapters() {
+async function getChapters() {
   const chaptersTimes = await prisma.chapter.findMany({
     select: {
       times: {
@@ -40,7 +40,7 @@ export async function getChapters() {
   return chaptersTimes;
 }
 
-export async function getUsers() {
+async function getUsers() {
   const users = await prisma.profile.findMany({
     select: {
       id: true,

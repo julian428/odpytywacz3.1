@@ -3,14 +3,16 @@ import { Modal, Box, Typography } from "@mui/material";
 import { ReactNode, RefObject, useEffect, useState } from "react";
 
 interface Props {
-  label: Element | string;
+  Label?: React.ElementType;
+  textLabel: string;
   title: string;
   buttonStyle: string;
-  children?: ReactNode;
+  children?: JSX.Element;
 }
 
 export default function StandardModal({
-  label,
+  Label,
+  textLabel,
   title,
   children,
   buttonStyle,
@@ -39,7 +41,7 @@ export default function StandardModal({
         className={buttonStyle}
         type="button"
       >
-        {label}
+        {(Label && <Label />) || textLabel}
       </button>
       <Modal
         open={open}

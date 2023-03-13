@@ -3,7 +3,7 @@ import { ChapterCardType } from "@/app/page";
 import StandardModal from "@/app/ui/modal";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { ReactElement, ReactNode, useState } from "react";
 import {
   AiOutlineEdit as EditIcon,
   AiOutlineDelete as DeleteIcon,
@@ -43,12 +43,14 @@ export default function EditChapter({ chapter }: Props) {
       <h2 className="capitalize text-lg">{chapter.title}</h2>
       <aside className="flex gap-2 mb-1">
         <StandardModal
-          label={<EditIcon />}
+          Label={EditIcon}
+          textLabel="edit"
           title="test"
           buttonStyle="py-1 px-2 bg-10 rounded"
         ></StandardModal>
         <StandardModal
-          label={<DeleteIcon />}
+          Label={DeleteIcon}
+          textLabel="delete"
           title={`Napewno chcesz usunąć ${chapter.title}?`}
           buttonStyle="py-1 px-2 border border-10 rounded"
         >

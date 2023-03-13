@@ -7,7 +7,7 @@ export interface SectionType {
   name: string;
 }
 
-export async function getSections() {
+async function getSections() {
   const sections = await prisma.section.findMany({
     select: {
       id: true,

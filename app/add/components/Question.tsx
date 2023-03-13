@@ -27,7 +27,7 @@ export default function Question({
     setHelper((state: number) => state + 1);
     setState((state: any) => {
       const q = state;
-      q[index].question = event.target.value;
+      q[index].question = (event.target as HTMLInputElement).value;
       return q;
     });
   };
@@ -36,7 +36,7 @@ export default function Question({
     setHelper((state: number) => state + 1);
     setState((state: any) => {
       const q = state;
-      q[index].answear = event.target.value;
+      q[index].answear = (event.target as HTMLInputElement).value;
       return q;
     });
   };
