@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/db";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(
@@ -7,7 +7,6 @@ export default async function handler(
 ) {
   if (req.method !== "POST") return res.status(400);
   const data = JSON.parse(req.body);
-  const prisma = new PrismaClient();
   const chapter = await prisma.chapter.create({
     data: {
       title: data.title,

@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import ChapterCard from "./components/ChapterCard";
+import prisma from "./db";
 
 export interface ChapterCardType {
   id: string;
@@ -17,7 +18,6 @@ export interface ChapterCardType {
 }
 
 export async function getChapters(): Promise<ChapterCardType[]> {
-  const prisma = new PrismaClient();
   const chapters = await prisma.chapter.findMany({
     where: {
       public: true,

@@ -1,3 +1,4 @@
+import prisma from "@/app/db";
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -7,7 +8,6 @@ export default async function handler(
 ) {
   if (req.method !== "POST")
     return res.status(400).json({ message: "Non existing endpoint" });
-  const prisma = new PrismaClient();
   const data = await JSON.parse(req.body);
   const chapterTimes = await prisma.topTime.findMany({
     where: {

@@ -4,7 +4,6 @@
 - edit chapter modal
 - auto spell checking
 - filter chapters
-- download chapter to csv
 - testing
 - user page
 - max chapter words length setting

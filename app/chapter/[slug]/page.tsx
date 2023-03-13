@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { PrismaClient } from "@prisma/client";
 import QuestionList from "./components/QuestionList";
+import prisma from "@/app/db";
 
 interface Props {
   params: {
@@ -20,7 +21,6 @@ export async function generateMetadata({ params }: Props): Promise<any> {
 }
 
 export async function getChapter(chapterId: string) {
-  const prisma = new PrismaClient();
   try {
     const chapter = await prisma.chapter.findUnique({
       where: {

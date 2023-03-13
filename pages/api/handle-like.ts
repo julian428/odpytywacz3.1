@@ -1,3 +1,4 @@
+import prisma from "@/app/db";
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -8,7 +9,6 @@ export default async function handler(
   if (req.method !== "POST")
     return res.status(400).json({ message: "non existing endpoint" });
   const data = await JSON.parse(req.body);
-  const prisma = new PrismaClient();
   try {
     if (data.isLiked && data.likeId) {
       const like = await prisma.like.delete({

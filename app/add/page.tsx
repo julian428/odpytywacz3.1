@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import prisma from "../db";
 import AddForm from "./components/AddForm";
 
 export interface SectionType {
@@ -7,7 +8,6 @@ export interface SectionType {
 }
 
 export async function getSections() {
-  const prisma = new PrismaClient();
   const sections = await prisma.section.findMany({
     select: {
       id: true,

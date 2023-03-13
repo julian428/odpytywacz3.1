@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/db";
 import ExpTable from "./components/expTable";
 import LikesTable from "./components/likesTable";
 import TimeTable from "./components/timeTable";
@@ -18,7 +18,6 @@ export interface ChapterTimesType {
 }
 
 export async function getChapters() {
-  const prisma = new PrismaClient();
   const chaptersTimes = await prisma.chapter.findMany({
     select: {
       times: {
@@ -42,7 +41,6 @@ export async function getChapters() {
 }
 
 export async function getUsers() {
-  const prisma = new PrismaClient();
   const users = await prisma.profile.findMany({
     select: {
       id: true,
