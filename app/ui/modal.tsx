@@ -37,6 +37,7 @@ export default function StandardModal({
       <button
         onClick={handleOpen}
         className={buttonStyle}
+        type="button"
       >
         {label}
       </button>

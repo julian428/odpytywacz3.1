@@ -13,6 +13,7 @@ import {
   useState,
 } from "react";
 import { QuestionType } from "../page";
+import DownloadChapterButton from "./DownloadChapterButton";
 import Question from "./Question";
 
 interface Props {
@@ -38,12 +39,13 @@ export function wordCheck(
   >
 ) {
   if (answearRef.disabled) return;
-  const value = answearRef.value.toLowerCase();
+  const value = answearRef.value.trim().toLowerCase();
   if (value === question.answear) {
     answearRef.className += " text-10";
+    console.log(answearRef.className);
     setPoints((state) => ({ ...state, correct: state.correct + 1 }));
   } else {
-    answearRef.style.color = "red";
+    answearRef.className += " text-red-500";
     answearRef.value += " => " + question.answear;
     setPoints((state) => ({ ...state, wrong: state.wrong + 1 }));
   }
@@ -67,9 +69,27 @@ export default function QuestionList({ chapter }: Props) {
     });
   };
 
+  const resetHandler = (event: FormEvent) => {
+    event.currentTarget
+      .querySelectorAll("input")
+      .forEach((input: HTMLInputElement) => {
+        input.disabled = false;
+        let parentClass = input.parentElement!.className;
+        parentClass = parentClass.replace("bg-30", "");
+        parentClass = parentClass.replace("text-60", "");
+        let inputClass = input.className;
+        inputClass = inputClass.replace("text-10", "");
+        inputClass = inputClass.replace("text-red-500", "");
+        input.parentElement!.className = parentClass;
+        input.className = inputClass;
+      });
+    setPoints((state: any) => ({ correct: 0, wrong: 0 }));
+    setTime(new Date().getTime());
+    buttonRef.current!.style.display = "block";
+  };
+
   const handleModalClose = () => {
     setOpenModal(false);
-    router.refresh();
   };
 
   useEffect(() => {
@@ -98,12 +118,15 @@ export default function QuestionList({ chapter }: Props) {
       });
     };
     setData();
+    router.refresh();
   }, [points]);
 
   return (
     <>
+      <DownloadChapterButton chapter={chapter} />
       <form
         onSubmit={submitHandler}
+        onReset={resetHandler}
         className=" w-96 text-30 flex flex-col gap-4 items-center"
       >
         <h1 className="text-xl">
@@ -122,6 +145,12 @@ export default function QuestionList({ chapter }: Props) {
           ref={buttonRef}
           label="sprawdź"
         />
+        <button
+          type="reset"
+          className="border px-4 py-1 rounded"
+        >
+          Restart
+        </button>
       </form>
       <StandardSelfModal
         isOpen={openModal}
