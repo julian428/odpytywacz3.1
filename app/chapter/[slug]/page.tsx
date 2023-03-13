@@ -50,8 +50,28 @@ export async function getChapter(chapterId: string) {
   }
 }
 
+function shuffle(array: any[]) {
+  let currentIndex = array.length,
+    randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex != 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
+  }
+
+  return array;
+}
+
 export default async function Chapter({ params }: Props) {
-  const chapter = await getChapter(params.slug.split("_")[2]);
+  let chapter = await getChapter(params.slug.split("_")[2]);
   if (!chapter) notFound();
   if (chapter.owned_questions.length < 1) {
     return (
@@ -62,5 +82,6 @@ export default async function Chapter({ params }: Props) {
       </article>
     );
   }
+  chapter = { ...chapter, owned_questions: shuffle(chapter.owned_questions) };
   return <QuestionList chapter={chapter} />;
 }

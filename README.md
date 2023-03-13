@@ -6,6 +6,5 @@
 - filter chapters
 - testing
 - optimizing
-- max chapter words length setting
 - premium user (max 5 chapters for non premium and no chapter download)
 - add stripe

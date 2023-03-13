@@ -53,26 +53,6 @@ export function wordCheck(
   answearRef.parentElement!.className += " bg-30 text-60 w-fit";
 }
 
-function shuffle(array: any[]) {
-  let currentIndex = array.length,
-    randomIndex;
-
-  // While there remain elements to shuffle.
-  while (currentIndex != 0) {
-    // Pick a remaining element.
-    randomIndex = Math.floor(Math.random() * currentIndex);
-    currentIndex--;
-
-    // And swap it with the current element.
-    [array[currentIndex], array[randomIndex]] = [
-      array[randomIndex],
-      array[currentIndex],
-    ];
-  }
-
-  return array;
-}
-
 export default function QuestionList({ chapter }: Props) {
   const [points, setPoints] = useState({ correct: 0, wrong: 0 });
   const [openModal, setOpenModal] = useState(false);
@@ -153,7 +133,7 @@ export default function QuestionList({ chapter }: Props) {
           {points.correct + "/" + chapter.owned_questions.length}
         </h1>
         <section className="flex flex-col gap-4 items-center  mt-4">
-          {shuffle(chapter.owned_questions).map((question: QuestionType) => (
+          {chapter.owned_questions.map((question: QuestionType) => (
             <Question
               question={question}
               setPoints={setPoints}
