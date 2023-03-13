@@ -5,6 +5,7 @@
 - auto spell checking
 - filter chapters
 - testing
-- user page
+- optimizing
 - max chapter words length setting
 - premium user (max 5 chapters for non premium and no chapter download)
+- add stripe
