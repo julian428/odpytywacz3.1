@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import prisma from "../db";
 import AddForm from "./components/AddForm";
 
