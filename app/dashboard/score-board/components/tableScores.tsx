@@ -7,8 +7,8 @@ interface Props {
 }
 
 export default function TableScores({ chapterTimes }: Props) {
-  const n = chapterTimes.times.length;
-  const times = chapterTimes.times;
+  const n = chapterTimes.times.length || 0;
+  const times = chapterTimes.times || { id: "-", nickname: "-", time: 0 };
   for (let i = 0; i < n - 1; i++) {
     for (let j = 0; j < n - i - 1; j++) {
       if (times[j].time > times[j + 1].time) {
