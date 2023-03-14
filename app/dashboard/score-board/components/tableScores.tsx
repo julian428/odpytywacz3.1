@@ -21,32 +21,32 @@ export default function TableScores({ chapterTimes }: Props) {
   return (
     <table className="w-96 border text-center text-30 mt-2">
       <tr className="h-4">
-        <th className="border">lp.</th>
+        <th className="border w-7">lp.</th>
         <th className="border">użytkownik</th>
         <th className="border">czas (ms)</th>
       </tr>
       <tr className="h-4">
-        <td className="border">1</td>
+        <td className="border w-7">1</td>
         <td className="border">{times[0]?.nickname || "-"}</td>
         <td className="border">{times[0]?.time || "-"}</td>
       </tr>
       <tr className="h-4">
-        <td className="border">2</td>
+        <td className="border w-7">2</td>
         <td className="border">{times[1]?.nickname || "-"}</td>
         <td className="border">{times[1]?.time || "-"}</td>
       </tr>
       <tr className="h-4">
-        <td className="border">3</td>
+        <td className="border w-7">3</td>
         <td className="border">{times[2]?.nickname || "-"}</td>
         <td className="border">{times[2]?.time || "-"}</td>
       </tr>
       <tr className="h-4">
-        <td className="border">4</td>
+        <td className="border w-7">4</td>
         <td className="border">{times[3]?.nickname || "-"}</td>
         <td className="border">{times[3]?.time || "-"}</td>
       </tr>
       <tr className="h-4">
-        <td className="border">5</td>
+        <td className="border w-7">5</td>
         <td className="border">{times[4]?.nickname || "-"}</td>
         <td className="border">{times[4]?.time || "-"}</td>
       </tr>
