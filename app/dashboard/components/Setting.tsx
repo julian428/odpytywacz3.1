@@ -1,10 +1,23 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
 interface Props {
   setting: { label: string; name: string; options: string[] };
 }
 
 export default function Setting({ setting }: Props) {
+  //!temporary solution
+  const [checked, setChecked] = useState<"manual" | "semi-auto" | "auto">(
+    "manual"
+  );
+
+  useEffect(() => {
+    setChecked(
+      localStorage.getItem(setting.name) as "manual" | "semi-auto" | "auto"
+    );
+  }, []);
+
   return (
     <section className="text-30 flex flex-col items-center py-2 px-1 border-b">
       <h2 className="capitalize text-lg">{setting.label}</h2>
@@ -20,7 +33,7 @@ export default function Setting({ setting }: Props) {
                 id={option}
                 value={option}
                 name={setting.name}
-                defaultChecked={localStorage.getItem(setting.name) === option}
+                defaultChecked={checked === option}
                 onChange={() => localStorage.setItem(setting.name, option)}
               />
               <label htmlFor={option}>{option}</label>
