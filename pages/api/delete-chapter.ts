@@ -7,7 +7,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== "POST") return res.status(400);
-  const data = req.body;
+  const data = await JSON.parse(req.body);
   console.log("deleting");
   try {
     const deleteResponse = await prisma.chapter.delete({

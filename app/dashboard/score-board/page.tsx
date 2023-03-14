@@ -18,37 +18,45 @@ export interface ChapterTimesType {
 }
 
 async function getChapters() {
-  const chaptersTimes = await prisma.chapter.findMany({
-    select: {
-      times: {
-        select: {
-          id: true,
-          nickname: true,
-          time: true,
+  try {
+    const chaptersTimes = await prisma.chapter.findMany({
+      select: {
+        times: {
+          select: {
+            id: true,
+            nickname: true,
+            time: true,
+          },
+        },
+        id: true,
+        title: true,
+        owner: true,
+        likes: {
+          select: {
+            id: true,
+          },
         },
       },
-      id: true,
-      title: true,
-      owner: true,
-      likes: {
-        select: {
-          id: true,
-        },
-      },
-    },
-  });
-  return chaptersTimes;
+    });
+    return chaptersTimes;
+  } catch (e) {
+    return [];
+  }
 }
 
 async function getUsers() {
-  const users = await prisma.profile.findMany({
-    select: {
-      id: true,
-      nickname: true,
-      exp: true,
-    },
-  });
-  return users;
+  try {
+    const users = await prisma.profile.findMany({
+      select: {
+        id: true,
+        nickname: true,
+        exp: true,
+      },
+    });
+    return users;
+  } catch (e) {
+    return [];
+  }
 }
 
 export default async function ScoreBoardPage() {

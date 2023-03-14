@@ -1,7 +1,7 @@
 #TODO
 
 - auto spell checking
-- filter chapters
+
 - testing
 - optimizing
 - SEO

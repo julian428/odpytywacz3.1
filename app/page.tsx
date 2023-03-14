@@ -22,37 +22,42 @@ export interface ChapterCardType {
 }
 
 export async function getChapters(): Promise<ChapterCardType[]> {
-  const chapters = await prisma.chapter.findMany({
-    where: {
-      public: true,
-    },
-    select: {
-      id: true,
-      title: true,
-      description: true,
-      owner: true,
-      section: {
-        select: {
-          id: true,
-          name: true,
+  try {
+    const chapters = await prisma.chapter.findMany({
+      where: {
+        public: true,
+      },
+      select: {
+        id: true,
+        title: true,
+        description: true,
+        owner: true,
+        section: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        likes: {
+          select: {
+            id: true,
+            user: true,
+          },
+        },
+        owned_questions: {
+          select: {
+            id: true,
+            answear: true,
+            question: true,
+          },
         },
       },
-      likes: {
-        select: {
-          id: true,
-          user: true,
-        },
-      },
-      owned_questions: {
-        select: {
-          id: true,
-          answear: true,
-          question: true,
-        },
-      },
-    },
-  });
-  return chapters;
+    });
+    return chapters;
+  } catch (e) {
+    console.log("something went wrong");
+    return [];
+  }
 }
 
 export default async function LandingPage() {

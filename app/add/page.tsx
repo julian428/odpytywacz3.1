@@ -7,13 +7,17 @@ export interface SectionType {
 }
 
 async function getSections() {
-  const sections = await prisma.section.findMany({
-    select: {
-      id: true,
-      name: true,
-    },
-  });
-  return sections;
+  try {
+    const sections = await prisma.section.findMany({
+      select: {
+        id: true,
+        name: true,
+      },
+    });
+    return sections;
+  } catch (e) {
+    return [];
+  }
 }
 
 export default async function AddChapterPage() {

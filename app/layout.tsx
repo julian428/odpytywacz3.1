@@ -1,22 +1,26 @@
 import MainNav from "./components/MainNav";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import "./globals.css";
-import { PrismaClient } from "@prisma/client";
 import { prisma } from "./db";
+
+import "./globals.css";
 
 export const metadata = {
   title: "Odpytywacz",
 };
 
-export async function getUserProfile() {
-  const profiles = await prisma.profile.findMany({
-    select: {
-      email: true,
-      nickname: true,
-      exp: true,
-    },
-  });
-  return profiles;
+async function getUserProfile() {
+  try {
+    const profiles = await prisma.profile.findMany({
+      select: {
+        email: true,
+        nickname: true,
+        exp: true,
+      },
+    });
+    return profiles;
+  } catch (e) {
+    return [];
+  }
 }
 
 export default async function RootLayout({
