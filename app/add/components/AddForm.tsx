@@ -4,12 +4,11 @@ import StandardInput from "@/app/ui/input";
 import StandardSelect from "@/app/ui/select";
 import StandardTextarea from "@/app/ui/textarea";
 import { SectionType } from "../page";
-import { BiMessageSquareAdd as AddIcon } from "react-icons/bi";
+import { BiMessageAltAdd as AddIcon } from "react-icons/bi";
 import StandardSubmit from "@/app/ui/submit";
 import Question from "./Question";
-import { FormEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, MouseEvent, useRef, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { AiOutlineLoading3Quarters as LoadingIcon } from "react-icons/ai";
 
 interface Props {
   sections: SectionType[];
@@ -21,9 +20,6 @@ interface addQuestion {
 }
 
 export default function AddForm({ sections }: Props) {
-  //? i didn't use useReducer here bc it triggered twice for some reason and added two questions. Problem for future me
-  //? and i have to use a helper state bc the question state doesn't update the DOM
-
   const titleRef = useRef<HTMLInputElement>(null);
   const sectionRef = useRef<HTMLSelectElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
@@ -31,16 +27,8 @@ export default function AddForm({ sections }: Props) {
   const { user } = useUser();
 
   const [questions, setQuestions] = useState<addQuestion[]>([]);
-  const [helper, setHelper] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [firstLoad, setFirstLoad] = useState(true);
 
-  const addHandler = () => {
-    setHelper(helper + 1);
-    const q = questions;
-    q.push({ answear: "", question: "" });
-    setQuestions(q);
-  };
   const submitHandler = async (event: FormEvent) => {
     setLoading(true);
     const data = {
@@ -56,17 +44,26 @@ export default function AddForm({ sections }: Props) {
     });
   };
 
-  useEffect(() => {
-    setFirstLoad(false);
-  }, []);
+  const handleValueChange = (event: ChangeEvent, index: number) => {
+    let data = [...questions];
+    const sIndex = (event.target as HTMLInputElement).name as
+      | "question"
+      | "answear";
+    const value = (event.target as HTMLInputElement).value;
+    data[index][sIndex] = value;
+    setQuestions(data);
+  };
 
-  if (firstLoad) {
-    return (
-      <center>
-        <LoadingIcon className=" animate-spin text-lg" />
-      </center>
-    );
-  }
+  const addHandler = (event: MouseEvent) => {
+    const newField = { question: "", answear: "" };
+    setQuestions([...questions, newField]);
+  };
+
+  const removeHandler = (event: MouseEvent, index: number) => {
+    let data = [...questions];
+    data.splice(index, 1);
+    setQuestions(data);
+  };
 
   if (!user) {
     return (
@@ -115,23 +112,25 @@ export default function AddForm({ sections }: Props) {
         required
       />
       <section className="flex gap-2 items-baseline justify-center">
-        <h2 className="text-lg mt-4">Pytania {questions.length}</h2>
-        <button
-          type="button"
-          className="text-10"
-          onClick={addHandler}
-        >
-          <AddIcon />
-        </button>
+        <h2 className="text-lg mt-4 flex gap-2 justify-center items-center">
+          Pytania {questions.length}
+          <button
+            type="button"
+            className="text-10 text-lg"
+            onClick={addHandler}
+          >
+            <AddIcon />
+          </button>
+        </h2>
       </section>
       <article className="flex flex-col gap-2 py-2 max-h-96 overflow-y-auto scroll-smooth scrollbar-none">
         {questions.map((question: addQuestion, index) => (
           <Question
-            question={question}
-            updateState={setHelper}
-            setState={setQuestions}
-            index={index}
             key={index}
+            index={index}
+            question={question}
+            handleRemove={removeHandler}
+            handleChange={handleValueChange}
           />
         ))}
       </article>

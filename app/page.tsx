@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import ChapterCard from "./components/ChapterCard";
 import prisma from "./db";
 
@@ -14,6 +13,11 @@ export interface ChapterCardType {
   likes: {
     id: string;
     user: string;
+  }[];
+  owned_questions: {
+    id: string;
+    answear: string;
+    question: string;
   }[];
 }
 
@@ -37,6 +41,13 @@ export async function getChapters(): Promise<ChapterCardType[]> {
         select: {
           id: true,
           user: true,
+        },
+      },
+      owned_questions: {
+        select: {
+          id: true,
+          answear: true,
+          question: true,
         },
       },
     },

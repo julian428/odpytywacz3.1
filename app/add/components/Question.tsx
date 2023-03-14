@@ -1,7 +1,7 @@
 "use client";
 
 import StandardSmallInput from "@/app/ui/smallInput";
-import { ChangeEvent, MouseEvent, useState } from "react";
+import { ChangeEvent, MouseEvent } from "react";
 import { AiFillDelete as DelteIcon } from "react-icons/ai";
 
 interface Props {
@@ -9,66 +9,40 @@ interface Props {
     question: string;
     answear: string;
   };
-  setState: any;
-  updateState: any;
   index: number;
+  handleChange: (event: ChangeEvent, index: number) => void;
+  handleRemove: (event: MouseEvent, index: number) => void;
 }
 
 export default function Question({
-  updateState,
   question,
-  setState,
   index,
+  handleChange,
+  handleRemove,
 }: Props) {
-  const [helper, setHelper] = useState(0);
-
-  const questionHandler = (event: ChangeEvent) => {
-    updateState((state: number) => state + 1);
-    setHelper((state: number) => state + 1);
-    setState((state: any) => {
-      const q = state;
-      q[index].question = (event.target as HTMLInputElement).value;
-      return q;
-    });
-  };
-  const answearHandler = (event: ChangeEvent) => {
-    updateState((state: number) => state + 1);
-    setHelper((state: number) => state + 1);
-    setState((state: any) => {
-      const q = state;
-      q[index].answear = (event.target as HTMLInputElement).value;
-      return q;
-    });
-  };
-  const deleteHandler = (event: MouseEvent) => {
-    updateState((state: number) => state + 1);
-    setHelper((state: number) => state + 1);
-    setState((state: any) => {
-      let q = state;
-      q = q.filter((a: any) => a !== question);
-      console.log(q);
-      return q;
-    });
-  };
   return (
     <section className="flex gap-1">
       <StandardSmallInput
         required
         placeholder="pytanie"
         params={{
-          onChange: questionHandler,
+          onChange: (event: ChangeEvent) => handleChange(event, index),
+          name: "question",
+          value: question.question,
         }}
       />
       <StandardSmallInput
         required
         placeholder="odpowiedź"
         params={{
-          onChange: answearHandler,
+          onChange: (event: ChangeEvent) => handleChange(event, index),
+          name: "answear",
+          value: question.answear,
         }}
       />
       <button
         type="button"
-        onClick={deleteHandler}
+        onClick={(event: MouseEvent) => handleRemove(event, index)}
         className="flex border border-10 text-10 rounded justify-center items-center w-[34px] text-lg"
       >
         <DelteIcon />

@@ -3,12 +3,13 @@ import { ChapterCardType } from "@/app/page";
 import StandardModal from "@/app/ui/modal";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useRouter } from "next/navigation";
-import { ReactElement, ReactNode, useState } from "react";
+import { useState } from "react";
 import {
   AiOutlineEdit as EditIcon,
   AiOutlineDelete as DeleteIcon,
   AiOutlineLoading3Quarters as LoadingIcon,
 } from "react-icons/ai";
+import EditForm from "./EditForm";
 
 interface Props {
   chapter: ChapterCardType;
@@ -45,9 +46,11 @@ export default function EditChapter({ chapter }: Props) {
         <StandardModal
           Label={EditIcon}
           textLabel="edit"
-          title="test"
+          title={`Edytuj ${chapter.title}`}
           buttonStyle="py-1 px-2 bg-10 rounded"
-        ></StandardModal>
+        >
+          <EditForm chapter={chapter} />
+        </StandardModal>
         <StandardModal
           Label={DeleteIcon}
           textLabel="delete"

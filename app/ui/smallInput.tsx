@@ -19,7 +19,7 @@ const StandardSmallInput = forwardRef(
         required={required}
         ref={ref}
         {...params}
-        className="w-[98px] px-2 py-1 border border-30 bg-60 rounded outline-none placeholder:text-center focus:bg-30 transition-all focus:text-60 focus:placeholder:text-transparent"
+        className="w-[98px] px-2 py-1 border border-30 bg-transparent rounded outline-none placeholder:text-center focus:bg-30 transition-all focus:text-60 focus:placeholder:text-transparent"
       />
     );
   }

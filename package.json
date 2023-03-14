@@ -20,7 +20,7 @@
     "@types/react-dom": "18.0.11",
     "csv-string": "^4.1.1",
     "json2csv": "^6.0.0-alpha.2",
-    "next": "13.2.1",
+    "next": "^13.2.4",
     "prisma": "^4.11.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

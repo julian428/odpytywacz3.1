@@ -7,13 +7,14 @@ interface Props {
   placeholder?: string;
   label?: string;
   required?: boolean;
+  params?: Object;
   onChange?: (event: ChangeEvent) => void;
   onBlur?: (event: ChangeEvent) => void;
 }
 
 const StandardInput = forwardRef(
   (
-    { type, placeholder, label, required, onChange, onBlur }: Props,
+    { type, placeholder, label, required, params, onChange, onBlur }: Props,
     ref: ForwardedRef<HTMLInputElement>
   ) => {
     const iHopeUnique = (Math.random() * Math.random()).toString();
@@ -28,6 +29,7 @@ const StandardInput = forwardRef(
           {label}
         </label>
         <input
+          {...params}
           onChange={onChange}
           onBlur={onBlur}
           type={type}
