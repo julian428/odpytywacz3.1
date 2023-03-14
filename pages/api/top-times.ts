@@ -1,4 +1,4 @@
-import prisma from "@/app/db";
+import { prisma } from "@/app/db";
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 

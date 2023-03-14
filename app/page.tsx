@@ -1,5 +1,5 @@
 import ChapterCard from "./components/ChapterCard";
-import prisma from "./db";
+import { prisma } from "./db";
 
 export interface ChapterCardType {
   id: string;

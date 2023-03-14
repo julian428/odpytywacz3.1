@@ -1,4 +1,4 @@
-import prisma from "../db";
+import { prisma } from "../db";
 import AddForm from "./components/AddForm";
 
 export interface SectionType {

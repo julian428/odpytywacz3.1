@@ -2,7 +2,7 @@ import MainNav from "./components/MainNav";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
 import "./globals.css";
 import { PrismaClient } from "@prisma/client";
-import prisma from "./db";
+import { prisma } from "./db";
 
 export const metadata = {
   title: "Odpytywacz",

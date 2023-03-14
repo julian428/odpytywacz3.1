@@ -1,4 +1,4 @@
-import prisma from "@/app/db";
+import { prisma } from "@/app/db";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(

@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { PrismaClient } from "@prisma/client";
 import QuestionList from "./components/QuestionList";
-import prisma from "@/app/db";
+import { prisma } from "@/app/db";
 
 interface Props {
   params: {

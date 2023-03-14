@@ -1,4 +1,4 @@
-import prisma from "@/app/db";
+import { prisma } from "@/app/db";
 import ExpTable from "./components/expTable";
 import LikesTable from "./components/likesTable";
 import TimeTable from "./components/timeTable";
