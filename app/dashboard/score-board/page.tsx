@@ -64,7 +64,7 @@ export default async function ScoreBoardPage() {
   const chapters = await getChapters();
   const users = await getUsers();
   return (
-    <center className="flex flex-col justify-between gap-4 mt-4 items-center text-center px-2">
+    <center className="flex flex-col justify-between gap-4 mt-4 items-center text-center px-2 overflow-y-auto scrollbar-none">
       <TimeTable chaptersTimes={chapters} />
       <hr />
       <LikesTable chapters={chapters} />
