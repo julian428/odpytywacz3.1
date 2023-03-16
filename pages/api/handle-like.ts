@@ -24,6 +24,8 @@ export default async function handler(
         },
       });
     }
+    res.revalidate("/");
+    res.revalidate("/dashboard/score-board");
     return res.status(201).json({ message: "edited like successfully" });
   } catch (error) {
     console.log(error);

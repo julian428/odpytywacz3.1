@@ -13,7 +13,10 @@ export default async function handler(
     const deleteResponse = await prisma.chapter.delete({
       where: { id: data.chapterId },
     });
-    console.log(`deleted chapter ${data.chapterId}`);
+
+    res.revalidate("/");
+    res.revalidate("/dashboard/score-board");
+    res.revalidate("/dashboard/my-chapters");
     return res
       .status(200)
       .json({ message: `Deleted chapter ${data.chapterId} Successfully` });

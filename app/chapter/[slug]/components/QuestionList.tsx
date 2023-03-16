@@ -39,7 +39,7 @@ export function wordCheck(
   >
 ) {
   if (answearRef.disabled) return;
-  const value = answearRef.value.trim().toLowerCase();
+  const value = answearRef.value.trim();
   if (value === question.answear) {
     answearRef.className += " text-10";
     console.log(answearRef.className);

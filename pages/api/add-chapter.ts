@@ -26,6 +26,8 @@ export default async function handler(
         })),
       });
     }
+    res.revalidate("/");
+    res.revalidate("/dashboard/my-chapters");
     return res.status(201).json({ message: "Success" });
   } catch (e) {
     console.log(e);
