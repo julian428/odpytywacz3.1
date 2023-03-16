@@ -32,7 +32,7 @@ const StandardInput = forwardRef(
           required={required}
           ref={ref}
           id={iHopeUnique}
-          className="px-4 py-1 rounded border bg-transparent outline-none text-center w-full focus:text-left focus:bg-30 focus:placeholder:text-transparent transition-all"
+          className="px-4 py-1 rounded bg-transparent outline-none text-center w-full focus:text-left focus:bg-30 focus:placeholder:text-transparent transition-all"
         />
       </section>
     );

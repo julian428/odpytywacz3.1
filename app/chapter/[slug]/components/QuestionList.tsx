@@ -132,7 +132,7 @@ export default function QuestionList({ chapter }: Props) {
         <h1 className="text-2xl">
           {points.correct + "/" + chapter.owned_questions.length}
         </h1>
-        <section className="flex flex-col gap-2 max-h-96 overflow-y-auto scrollbar-none">
+        <section className="flex flex-col gap-2 max-h-[70vh] overflow-y-auto scrollbar-none">
           {chapter.owned_questions.map((question: QuestionType) => (
             <Question
               question={question}
