@@ -60,6 +60,8 @@ async function getUsers() {
   }
 }
 
+export const revalidate = 0;
+
 export default async function ScoreBoardPage() {
   const chapters = await getChapters();
   const users = await getUsers();

@@ -1,6 +1,8 @@
 import Login from "../components/Login";
 import Setting from "./components/Setting";
 
+export const revalidate = 0;
+
 export default function Dashboard() {
   const settings = [
     {

@@ -70,6 +70,8 @@ function shuffle(array: any[]) {
   return array;
 }
 
+export const revalidate = 0;
+
 export default async function Chapter({ params }: Props) {
   let chapter = await getChapter(params.slug.split("_")[2]);
   if (!chapter) notFound();

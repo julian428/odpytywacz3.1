@@ -60,6 +60,8 @@ export async function getChapters(): Promise<ChapterCardType[]> {
   }
 }
 
+export const revalidate = 0;
+
 export default async function LandingPage() {
   const chapters = await getChapters();
   return (

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import EditChapter from "./components/EditChapter";
 
+export const revalidate = 0;
+
 export default async function UserChapters() {
   const chapters = await getChapters();
   if (!chapters) notFound();
