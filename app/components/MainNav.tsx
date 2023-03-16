@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AiOutlineSearch as Logo } from "react-icons/ai";
+import RefreshButton from "../ui/refresh";
 import MenuLooks from "./MenuLooks";
 
 export default function MainNav({ profiles }: any) {
@@ -13,7 +14,8 @@ export default function MainNav({ profiles }: any) {
         <Logo className="text-2xl" />
         <h2 className="text-xs">Odpytywacz</h2>
       </Link>
-      <section>
+      <section className="flex gap-4">
+        <RefreshButton />
         <Link
           href="/dashboard"
           replace
