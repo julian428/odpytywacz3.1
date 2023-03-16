@@ -18,7 +18,7 @@ export default async function UserChapters() {
       </article>
       <section className="absolute bottom-2 flex w-full justify-center">
         <Link
-          className="px-4 py-1 bg-10 rounded"
+          className="px-4 py-1 bg-10 rounded text-60"
           href="/add"
           replace
         >

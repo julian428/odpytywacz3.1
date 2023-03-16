@@ -14,9 +14,9 @@ const StandardSubmit = forwardRef(({ label, loading, params }: Props, ref) => {
       disabled={loading}
       {...params}
       ref={ref}
-      className="py-1 px-4 rounded bg-10 text-30 w-full"
+      className="py-1 px-4 rounded bg-10 text-60 w-full"
     >
-      {loading ? <LoadingIcon className="animate-spin" /> : label}
+      {loading ? <LoadingIcon className="animate-spin text-60" /> : label}
     </button>
   );
 });
