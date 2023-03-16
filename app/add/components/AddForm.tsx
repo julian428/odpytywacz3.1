@@ -109,7 +109,6 @@ export default function AddForm({ sections }: Props) {
       <StandardTextarea
         ref={descriptionRef}
         placeholder="opis"
-        required
       />
       <section>
         <h2 className="flex justify-center items-center gap-2">

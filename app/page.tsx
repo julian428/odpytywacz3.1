@@ -64,7 +64,7 @@ export default async function LandingPage() {
   const chapters = await getChapters();
   return (
     <>
-      <article className="flex flex-col gap-4 mt-4">
+      <article className="flex flex-col gap-4 mt-2 max-h-[90vh] overflow-y-auto scrollbar-none">
         {chapters.map((chapter: ChapterCardType) => (
           <ChapterCard
             chapter={chapter}
