@@ -1,5 +1,3 @@
-"use client";
-
 import StandardInput from "@/app/ui/input";
 import { Dispatch, SetStateAction, useRef } from "react";
 import { QuestionType } from "../page";
