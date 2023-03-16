@@ -94,11 +94,6 @@ export default function AddForm({ sections }: Props) {
       onSubmit={submitHandler}
       className="flex flex-col items-center gap-2 max-w-xs"
     >
-      <StandardInput
-        placeholder="Tytuł"
-        ref={titleRef}
-        required
-      />
       <StandardSelect
         ref={sectionRef}
         params={{ defaultValue: sections[0].id }}
@@ -114,6 +109,11 @@ export default function AddForm({ sections }: Props) {
           );
         })}
       </StandardSelect>
+      <StandardInput
+        placeholder="Tytuł"
+        ref={titleRef}
+        required
+      />
       <StandardTextarea
         ref={descriptionRef}
         placeholder="opis"

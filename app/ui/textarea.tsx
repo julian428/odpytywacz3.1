@@ -20,7 +20,7 @@ const StandardTextarea = forwardRef(
         ref={ref}
         {...params}
         required={required}
-        className="px-4 py-1 rounded border bg-transparent outline-none text-center w-full focus:text-left focus:bg-30 focus:placeholder:text-transparent focus:text-60 transition-all"
+        className="px-4 py-1 rounded border bg-transparent outline-none text-center w-full focus:text-left focus:bg-30 focus:placeholder:text-transparent transition-all"
       />
     );
   }
