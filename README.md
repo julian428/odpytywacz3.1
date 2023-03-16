@@ -1,7 +1,6 @@
 #TODO
 
 - auto spell checking
-- fix the styles
 
 - testing
 - optimizing

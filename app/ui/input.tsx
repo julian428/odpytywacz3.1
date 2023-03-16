@@ -19,7 +19,9 @@ const StandardInput = forwardRef(
   ) => {
     const iHopeUnique = (Math.random() * Math.random()).toString();
     return (
-      <section className={`flex flex-col w-full gap-2 items-center py-1`}>
+      <section
+        className={`flex flex-col w-full gap-2 items-center py-1 rounded`}
+      >
         <label htmlFor={iHopeUnique}>{label}</label>
         <input
           {...params}

@@ -26,7 +26,9 @@ export default function Question({ question, setPoints }: Props) {
 
   const changeHandler = () => {
     if (localStorage.getItem("word-checking") !== "auto") return;
-    console.log("auto spell check");
+    const value = (answearRef.current as HTMLInputElement).value;
+    if (value !== question.answear) return;
+    wordCheck(question, answearRef.current, setPoints);
   };
 
   return (

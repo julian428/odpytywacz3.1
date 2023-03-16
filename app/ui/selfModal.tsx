@@ -21,7 +21,7 @@ export default function StandardSelfModal({
     alignItems: "center",
   };
   const styleBox = {
-    background: "#d3d3d3",
+    background: "#555555",
     padding: "1rem",
     textAlign: "center",
   };
