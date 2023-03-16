@@ -63,7 +63,7 @@ export default function EditChapter({ chapter }: Props) {
               disabled={loading}
               className="px-4 py-1 border rounded border-10 mt-4 text-10"
             >
-              {loading ? <LoadingIcon /> : "Usuń"}
+              {loading ? <LoadingIcon className="animate-spin" /> : "Usuń"}
             </button>
           </article>
         </StandardModal>
