@@ -68,7 +68,15 @@ export default function AddForm({ sections }: Props) {
   if (!user) {
     return (
       <center>
-        <p>Zaloguj się żeby stworzyć rozdział</p>
+        <p>
+          <a
+            href="/api/auth/login"
+            className="text-blue-400 underline"
+          >
+            Zaloguj się
+          </a>{" "}
+          żeby stworzyć rozdział
+        </p>
       </center>
     );
   }
