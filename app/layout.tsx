@@ -33,7 +33,7 @@ export default async function RootLayout({
   return (
     <UserProvider>
       <html lang="pl">
-        <body className="bg-60 w-screen h-screen text-30">
+        <body className="bg-60 w-screen h-screen text-30 overflow-y-hidden">
           <header className="border-b border-30 w-screen">
             <MainNav profiles={profiles} />
           </header>
