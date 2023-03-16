@@ -23,8 +23,8 @@ async function getSections() {
 export default async function AddChapterPage() {
   const sections = await getSections();
   return (
-    <article className="text-30 text-center">
-      <h1 className="text-2xl border-b">Dodaj Rodział</h1>
+    <article className="text-center mt-4 w-full flex flex-col items-center">
+      <h1 className="text-3xl underline mb-8">Dodaj Rodział</h1>
       <AddForm sections={sections} />
     </article>
   );

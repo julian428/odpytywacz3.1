@@ -20,7 +20,7 @@ export default function EditQuestion({
   removeHandler,
 }: Props) {
   return (
-    <section className="items-center flex justify-between">
+    <section className="flex gap-2 items-center">
       <StandardSmallInput
         required
         params={{
@@ -39,8 +39,8 @@ export default function EditQuestion({
       />
       <button
         type="button"
+        className="w-8 h-8 border border-red-500 text-red-500 rounded flex justify-center items-center"
         onClick={(event: MouseEvent) => removeHandler(event, index)}
-        className="text-red-500 border border-red-500 p-1 rounded h-full"
       >
         <DeleteIcon />
       </button>

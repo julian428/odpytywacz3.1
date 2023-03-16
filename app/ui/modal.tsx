@@ -23,7 +23,7 @@ export default function StandardModal({
     alignItems: "center",
   };
   const styleBox = {
-    background: "#d3d3d3",
+    background: "#555555",
     padding: "1rem",
     textAlign: "center",
   };
@@ -55,7 +55,6 @@ export default function StandardModal({
             id="modal-modal-title"
             variant="h6"
             component="h2"
-            className="text-60"
           >
             {title}
           </Typography>

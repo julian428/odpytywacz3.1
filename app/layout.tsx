@@ -19,6 +19,7 @@ async function getUserProfile() {
     });
     return profiles;
   } catch (e) {
+    console.warn(e);
     return [];
   }
 }
@@ -31,15 +32,12 @@ export default async function RootLayout({
   const profiles = await getUserProfile();
   return (
     <UserProvider>
-      <html
-        lang="pl"
-        className="w-screen h-screen flex flex-col items-center"
-      >
-        <body className="bg-60 flex flex-col overflow-x-hidden overflow-y-auto scrollbar-none items-center">
-          <header className="w-screen">
+      <html lang="pl">
+        <body className="bg-60 w-screen h-screen text-30">
+          <header className="border-b border-30 w-screen">
             <MainNav profiles={profiles} />
           </header>
-          <main className="p-4 max-w-[26rem] self-center overflow-hidden">
+          <main className="flex flex-col max-w-md items-center">
             {children}
           </main>
         </body>

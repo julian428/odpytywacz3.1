@@ -89,10 +89,15 @@ export default function DownloadForm({ questions }: Props) {
   return (
     <form
       onSubmit={submitHandler}
-      className="flex flex-col gap-4 items-center text-60 mt-4"
+      className="flex flex-col items-center gap-6 mt-4"
     >
-      <section className="flex gap-1">
-        <label htmlFor="download_form__headers">nagłówki</label>
+      <section className="flex gap-4">
+        <label
+          htmlFor="download_form__headers"
+          className="text-xl"
+        >
+          nagłówki
+        </label>
         <input
           type="checkbox"
           id="download_form__headers"
@@ -100,10 +105,10 @@ export default function DownloadForm({ questions }: Props) {
           ref={headersRef}
         />
       </section>
-      <section className="flex flex-col justify-evenly">
-        <h2 className="font-bold">Sortowanie</h2>
-        <section className="flex gap-4 justify-between">
-          <aside className="flex gap-1 items-center">
+      <section className="text-xl">
+        <h2 className="font-bold text-xl">Sortowanie</h2>
+        <section className="flex gap-2 items-center justify-between">
+          <aside className="flex gap-2">
             <input
               type="radio"
               name="asc-desc"
@@ -115,7 +120,7 @@ export default function DownloadForm({ questions }: Props) {
             />
             <label htmlFor="sorting-asc">rosnąco</label>
           </aside>
-          <aside className="flex gap-1 items-center">
+          <aside className="flex gap-2">
             <input
               type="radio"
               name="asc-desc"
@@ -126,8 +131,8 @@ export default function DownloadForm({ questions }: Props) {
             <label htmlFor="sorting-desc">malejąco</label>
           </aside>
         </section>
-        <section className="flex gap-4">
-          <aside className="flex gap-1 items-center">
+        <section className="flex gap-2 justify-between">
+          <aside className="flex gap-2">
             <input
               type="radio"
               name="sort"
@@ -139,7 +144,7 @@ export default function DownloadForm({ questions }: Props) {
             />
             <label htmlFor="sort-q">pytania</label>
           </aside>
-          <aside className="flex gap-1 items-center">
+          <aside className="flex gap-2">
             <input
               type="radio"
               name="sort"

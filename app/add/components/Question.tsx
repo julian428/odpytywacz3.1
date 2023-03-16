@@ -1,5 +1,3 @@
-"use client";
-
 import StandardSmallInput from "@/app/ui/smallInput";
 import { ChangeEvent, MouseEvent } from "react";
 import { AiFillDelete as DelteIcon } from "react-icons/ai";
@@ -21,7 +19,7 @@ export default function Question({
   handleRemove,
 }: Props) {
   return (
-    <section className="flex gap-1">
+    <section className="flex gap-2 scrollbar-none">
       <StandardSmallInput
         required
         placeholder="pytanie"
@@ -42,8 +40,8 @@ export default function Question({
       />
       <button
         type="button"
+        className="w-8 h-8 border flex justify-center items-center rounded border-red-500 text-red-500"
         onClick={(event: MouseEvent) => handleRemove(event, index)}
-        className="flex border border-10 text-10 rounded justify-center items-center w-[34px] text-lg"
       >
         <DelteIcon />
       </button>

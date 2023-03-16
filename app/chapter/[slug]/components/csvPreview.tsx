@@ -4,21 +4,21 @@ export default function CsvPreview({ csvData }: { csvData: string }) {
   const data = csv.parse(csvData);
   return (
     <>
-      <h2 className="font-bold">Podgląd csv</h2>
-      <table className="border border-60">
+      <h2 className="font-bold text-xl">Podgląd csv</h2>
+      <table className="border text-xl w-64">
         {data.map((line: any[], index: number) => {
           if (index === 5)
             return (
               <tr>
-                <td className="border border-60">...</td>
-                <td className="border border-60">...</td>
+                <td className="border">...</td>
+                <td className="border">...</td>
               </tr>
             );
           if (index > 5) return <></>;
           return (
             <tr>
-              <td className="border border-60 px-2">{line[0]}</td>
-              <td className="border border-60 px-2">{line[1]}</td>
+              <td className="border px-4 py-1 w-1/2">{line[0]}</td>
+              <td className="border px-4 py-1 w-1/2">{line[1]}</td>
             </tr>
           );
         })}

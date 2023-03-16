@@ -34,13 +34,11 @@ export default function EditForm({ chapter }: Props) {
       method: "POST",
       body: JSON.stringify(submitData),
     });
-
-    console.log(response);
   };
   return (
     <form
       onSubmit={submitHandler}
-      className="flex flex-col gap-4 text-60"
+      className="flex flex-col gap-4"
     >
       <StandardInput
         required

@@ -47,17 +47,17 @@ export default function QuestionsList({
 
   return (
     <>
-      <h2 className="flex items-center justify-center gap-2">
+      <h2 className="flex justify-center items-center gap-2">
         Pytania: {editableQuestions.length}
         <button
           type="button"
+          className="text-10 text-2xl"
           onClick={handleAddQuestion}
-          className="text-10 text-lg"
         >
           <AddIcon />
         </button>
       </h2>
-      <article className="flex flex-col gap-2 max-h-96 overflow-y-auto scrollbar-none">
+      <article className="flex flex-col gap-2">
         {editableQuestions.map((q: any, i: number) => {
           return (
             <EditQuestion

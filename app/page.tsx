@@ -55,7 +55,7 @@ export async function getChapters(): Promise<ChapterCardType[]> {
     });
     return chapters;
   } catch (e) {
-    console.log("something went wrong");
+    console.log(e);
     return [];
   }
 }
@@ -64,7 +64,7 @@ export default async function LandingPage() {
   const chapters = await getChapters();
   return (
     <>
-      <article className="flex flex-col gap-4 overflow-y-auto max-h-[44rem] scrollbar-none">
+      <article className="flex flex-col gap-4 mt-4">
         {chapters.map((chapter: ChapterCardType) => (
           <ChapterCard
             chapter={chapter}
@@ -73,9 +73,7 @@ export default async function LandingPage() {
         ))}
       </article>
       <center>
-        <h2 className="text-30">
-          {!chapters.length && "Nie znaleziono żadnych rozdziałów"}
-        </h2>
+        <h2>{!chapters.length && "Nie znaleziono żadnych rozdziałów"}</h2>
       </center>
     </>
   );

@@ -45,6 +45,7 @@ export default async function handler(
 
     return res.status(200).json({ message: "Added time" });
   } catch (e) {
+    console.log(e);
     return res.status(500).json({ message: "something went wrong" });
   }
 }

@@ -55,6 +55,7 @@ async function getUsers() {
     });
     return users;
   } catch (e) {
+    console.log(e);
     return [];
   }
 }
@@ -63,7 +64,7 @@ export default async function ScoreBoardPage() {
   const chapters = await getChapters();
   const users = await getUsers();
   return (
-    <center className="mt-4 flex flex-col gap-8">
+    <center className="flex flex-col justify-between gap-4 mt-4 items-center text-center px-2">
       <TimeTable chaptersTimes={chapters} />
       <hr />
       <LikesTable chapters={chapters} />

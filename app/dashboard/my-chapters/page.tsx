@@ -8,7 +8,7 @@ export default async function UserChapters() {
   if (!chapters) notFound();
   return (
     <>
-      <article className="max-h-[44rem] overflow-y-auto scrollbar-none mt-4">
+      <article className="flex flex-col gap-2 mt-4 max-h-96 overflow-y-auto scrollbar-none">
         {chapters.map((chapter: ChapterCardType) => (
           <EditChapter
             chapter={chapter}
@@ -16,15 +16,15 @@ export default async function UserChapters() {
           />
         ))}
       </article>
-      <center className="mt-8">
+      <section className="absolute bottom-2 flex w-full justify-center">
         <Link
+          className="px-4 py-1 bg-10 rounded"
           href="/add"
           replace
-          className="bg-10 py-1 px-4 rounded text-30"
         >
           Dodaj Rozdział
         </Link>
-      </center>
+      </section>
     </>
   );
 }

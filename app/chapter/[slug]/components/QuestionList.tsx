@@ -89,6 +89,7 @@ export default function QuestionList({ chapter }: Props) {
   };
 
   const handleModalClose = () => {
+    router.refresh();
     setOpenModal(false);
   };
 
@@ -118,21 +119,20 @@ export default function QuestionList({ chapter }: Props) {
       });
     };
     setData();
-    router.refresh();
   }, [points]);
 
   return (
     <>
       <DownloadChapterButton chapter={chapter} />
       <form
+        className="flex flex-col gap-4 items-center"
         onSubmit={submitHandler}
         onReset={resetHandler}
-        className=" w-96 text-30 flex flex-col gap-4 items-center"
       >
-        <h1 className="text-xl">
+        <h1 className="text-2xl">
           {points.correct + "/" + chapter.owned_questions.length}
         </h1>
-        <section className="flex flex-col gap-4 items-center  mt-4">
+        <section className="flex flex-col gap-2 max-h-96 overflow-y-auto scrollbar-none">
           {chapter.owned_questions.map((question: QuestionType) => (
             <Question
               question={question}
@@ -141,16 +141,18 @@ export default function QuestionList({ chapter }: Props) {
             />
           ))}
         </section>
-        <StandardSubmit
-          ref={buttonRef}
-          label="sprawdź"
-        />
-        <button
-          type="reset"
-          className="border px-4 py-1 rounded"
-        >
-          Restart
-        </button>
+        <section className="flex gap-2 absolute bottom-2">
+          <StandardSubmit
+            ref={buttonRef}
+            label="sprawdź"
+          />
+          <button
+            type="reset"
+            className="border rounded py-1 px-4 w-full"
+          >
+            Restart
+          </button>
+        </section>
       </form>
       <StandardSelfModal
         isOpen={openModal}

@@ -84,7 +84,7 @@ export default function AddForm({ sections }: Props) {
   return (
     <form
       onSubmit={submitHandler}
-      className="flex flex-col gap-2"
+      className="flex flex-col items-center gap-2 max-w-xs"
     >
       <StandardInput
         placeholder="Tytuł"
@@ -111,19 +111,19 @@ export default function AddForm({ sections }: Props) {
         placeholder="opis"
         required
       />
-      <section className="flex gap-2 items-baseline justify-center">
-        <h2 className="text-lg mt-4 flex gap-2 justify-center items-center">
+      <section>
+        <h2 className="flex justify-center items-center gap-2">
           Pytania {questions.length}
           <button
             type="button"
-            className="text-10 text-lg"
             onClick={addHandler}
+            className="text-10 text-2xl"
           >
             <AddIcon />
           </button>
         </h2>
       </section>
-      <article className="flex flex-col gap-2 py-2 max-h-96 overflow-y-auto scroll-smooth scrollbar-none">
+      <article className="flex flex-col items-center gap-2 max-h-96 overflow-y-auto">
         {questions.map((question: addQuestion, index) => (
           <Question
             key={index}
@@ -134,10 +134,12 @@ export default function AddForm({ sections }: Props) {
           />
         ))}
       </article>
-      <StandardSubmit
-        label="Dodaj"
-        loading={loading}
-      />
+      <section className="absolute bottom-4">
+        <StandardSubmit
+          label="Stwórz"
+          loading={loading}
+        />
+      </section>
     </form>
   );
 }

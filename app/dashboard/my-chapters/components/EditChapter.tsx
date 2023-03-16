@@ -40,14 +40,14 @@ export default function EditChapter({ chapter }: Props) {
   }
 
   return (
-    <section className="text-30 flex justify-between mt-4 border-b">
-      <h2 className="capitalize text-lg">{chapter.title}</h2>
-      <aside className="flex gap-2 mb-1">
+    <section className="flex justify-between gap-32 items-baseline mx-2 px-2 pb-1 border-b">
+      <h2 className="capitalize text-xl">{chapter.title}</h2>
+      <aside className="flex gap-1">
         <StandardModal
           Label={EditIcon}
           textLabel="edit"
           title={`Edytuj ${chapter.title}`}
-          buttonStyle="py-1 px-2 bg-10 rounded"
+          buttonStyle="flex justify-center items-center w-8 h-8 bg-10 rounded"
         >
           <EditForm chapter={chapter} />
         </StandardModal>
@@ -55,19 +55,15 @@ export default function EditChapter({ chapter }: Props) {
           Label={DeleteIcon}
           textLabel="delete"
           title={`Napewno chcesz usunąć ${chapter.title}?`}
-          buttonStyle="py-1 px-2 border border-10 rounded"
+          buttonStyle="flex justify-center items-center w-8 h-8 border border-10 rounded"
         >
-          <article className="flex justify-evenly mt-8">
+          <article>
             <button
               onClick={onDelete}
               disabled={loading}
-              className="text-30 transition-all flex justify-center items-center bg-10 rounded px-4 py-1 w-20 h-8 text-center"
+              className="px-4 py-1 border rounded border-10 mt-4 text-10"
             >
-              {loading ? (
-                <LoadingIcon className=" animate-spin text-lg" />
-              ) : (
-                "Usuń"
-              )}
+              {loading ? <LoadingIcon /> : "Usuń"}
             </button>
           </article>
         </StandardModal>

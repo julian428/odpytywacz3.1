@@ -25,7 +25,7 @@ export default function LikesTable({ chapters }: Props) {
     }
   }
   return (
-    <article className="text-30">
+    <article className="flex flex-col items-center gap-2 w-full">
       <h2>Top 5 najbardziel lubianych rozdziałów.</h2>
       <LikesScore chapters={TopChapters} />
     </article>

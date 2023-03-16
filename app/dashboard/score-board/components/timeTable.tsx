@@ -23,7 +23,7 @@ export default function TimeTable({ chaptersTimes }: Props) {
   };
 
   return (
-    <article>
+    <article className="flex flex-col items-center gap-2 w-full">
       <StandardSelect
         params={{ onChange: onChapterChangeHandler }}
         ref={chapterRef}
@@ -39,9 +39,7 @@ export default function TimeTable({ chaptersTimes }: Props) {
           );
         })}
       </StandardSelect>
-      <h2 className="mt-2 text-30">
-        Top 5 najszybszych rozwiązań w danym rozdziale.
-      </h2>
+      <h2>Top 5 najszybszych rozwiązań w danym rozdziale.</h2>
       <TableScores chapterTimes={currentChapter} />
     </article>
   );

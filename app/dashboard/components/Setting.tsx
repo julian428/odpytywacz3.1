@@ -19,14 +19,14 @@ export default function Setting({ setting }: Props) {
   }, []);
 
   return (
-    <section className="text-30 flex flex-col items-center py-2 px-1 border-b">
-      <h2 className="capitalize text-lg">{setting.label}</h2>
-      <form className="flex flex-wrap w-full justify-evenly items-center">
+    <section className="text-center capitalize">
+      <h2>{setting.label}</h2>
+      <form className="flex justify-evenly items-center gap-8">
         {setting.options.map((option: string) => {
           return (
             <section
               key={option}
-              className="flex justify-center items-center gap-1"
+              className="flex gap-1"
             >
               <input
                 type="radio"

@@ -7,8 +7,11 @@ export default async function handler(
 ) {
   if (req.method !== "POST")
     return res.status(400).json({ message: "non existing endpoint" });
+
   try {
     const data = await JSON.parse(req.body);
+    const oldQuestions = data.questions.filter((question: any) => question.id);
+    const newQuestions = data.questions.filter((question: any) => !question.id);
 
     const updatedChapter = await prisma.chapter.update({
       where: {
@@ -19,9 +22,6 @@ export default async function handler(
         description: data.description,
       },
     });
-
-    const oldQuestions = data.questions.filter((question: any) => question.id);
-    const newQuestions = data.questions.filter((question: any) => !question.id);
 
     const updatedQuestions = await prisma.$transaction(
       oldQuestions.map((question: any) =>

@@ -22,7 +22,7 @@ model Chapter {
   title           String
   public          Boolean    @default(true)
   section_id      String     @db.Uuid
-  section         Section    @relation(fields: [section_id], references: [id], onDelete: NoAction)
+  section         Section    @relation(fields: [section_id], references: [id], onDelete: Cascade)
   owned_questions Question[]
   description     String
   created_at      DateTime   @default(now())
@@ -42,7 +42,7 @@ model Question {
 model Section {
   id             String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   owned_chapters Chapter[]
-  name           String
+  name           String    @unique
   created_at     DateTime  @default(now())
   updated_at     DateTime  @default(now()) @updatedAt
 }

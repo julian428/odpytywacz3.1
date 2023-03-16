@@ -10,10 +10,10 @@ const StandardSelect = forwardRef(
   ({ children, params, required }: Props, ref) => {
     return (
       <select
+        className="bg-30 outline-none py-1 px-4 rounded text-60"
         {...params}
         ref={ref}
-        required
-        className="bg-30 py-1 px-4 rounded text-60 outline-none"
+        required={required}
       >
         {children}
       </select>

@@ -25,7 +25,7 @@ export default function ExpTable({ users }: Props) {
   }
 
   return (
-    <article className="text-30">
+    <article className="flex flex-col items-center gap-2 w-full">
       <h2>Top 5 użytkowników z najwyższym xp.</h2>
       <ExpScore users={topUsers} />
     </article>

@@ -8,16 +8,16 @@ interface Props {
 
 export default function ChapterCard({ chapter }: Props) {
   return (
-    <section className="px-8 py-4 bg-30 text-60 rounded-md text-center flex flex-col w-96 h-44">
+    <section className=" w-80 h-36 bg-30 flex flex-col gap-4 rounded text-60 px-4 py-1 text-center">
       <Link
-        href={`/chapter/${chapter.section.name}_${chapter.title}_${chapter.id}`}
         className="flex flex-col gap-1"
+        href={`/chapter/${chapter.section.name}_${chapter.title}_${chapter.id}`}
       >
         <h2 className="text-3xl">{chapter.title}</h2>
-        <p className="text-xs border-t py-1">{chapter.section.name}</p>
+        <p>{chapter.section.name}</p>
       </Link>
-      <section className="flex justify-between pt-4">
-        <aside className=" overflow-y-auto">{chapter.description}</aside>
+      <section className="flex justify-between">
+        <aside>{chapter.description}</aside>
         <aside>
           <section>{chapter.owner}</section>
           <Likes

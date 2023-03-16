@@ -75,7 +75,7 @@ export default async function Chapter({ params }: Props) {
   if (!chapter) notFound();
   if (chapter.owned_questions.length < 1) {
     return (
-      <article className=" w-96 text-30 mt-4 flex flex-col gap-4 items-center">
+      <article>
         <center>
           <h1>Ten rozdział nie ma żadnych pytań.</h1>
         </center>
@@ -83,5 +83,9 @@ export default async function Chapter({ params }: Props) {
     );
   }
   chapter = { ...chapter, owned_questions: shuffle(chapter.owned_questions) };
-  return <QuestionList chapter={chapter} />;
+  return (
+    <article className="mt-4">
+      <QuestionList chapter={chapter} />
+    </article>
+  );
 }

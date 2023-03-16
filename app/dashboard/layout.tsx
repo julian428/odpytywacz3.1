@@ -7,25 +7,25 @@ export default function DashboardLayout({
 }) {
   return (
     <>
-      <nav className="-mt-4 flex justify-evenly w-96 text-30">
+      <nav className="w-screen flex justify-center gap-2">
         <Link
           href="/dashboard"
-          className=" hover:text-10"
           replace
+          className="hover:text-10"
         >
           Ustawienia
         </Link>
         |
         <Link
           href="/dashboard/score-board"
-          className=" hover:text-10"
+          className="hover:text-10"
         >
           Tabela Wyników
         </Link>
         |
         <Link
           href="/dashboard/my-chapters"
-          className=" hover:text-10"
+          className="hover:text-10"
         >
           Rozdziały
         </Link>
