@@ -10,8 +10,8 @@ export default function MainNav({ profiles }: any) {
         replace
         className="flex flex-col items-center"
       >
-        <Logo className="text-3xl" />
-        <h2>Odpytywacz</h2>
+        <Logo className="text-2xl" />
+        <h2 className="text-xs">Odpytywacz</h2>
       </Link>
       <section>
         <Link

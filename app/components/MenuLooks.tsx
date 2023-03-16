@@ -44,8 +44,8 @@ export default function MenuLooks({ profiles }: Props) {
     const defaultPic =
       "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.YAJlHz4zchNP5zIfsajE9AHaFr%26pid%3DApi&f=1&ipt=53dea86cb4c1e9ea32515d1038ff20c2bca153bdccce8e96423e7b0e1363fe1d&ipo=images";
     return (
-      <section className="w-12 relative">
-        <div className="absolute -top-[5px] -right-[5px] text-10 bg-60 w-6 h-6 rounded-full flex justify-center items-center">
+      <section className="w-10 relative">
+        <div className="absolute -top-[3px] -right-[3px] text-xs text-10 bg-60 w-4 h-4 rounded-full flex justify-center items-center">
           <p>{abbreviateNumber(xp)}</p>
         </div>
         <img
