@@ -1,7 +1,5 @@
 #TODO
 
-- auto spell checking
-
 - testing
 - optimizing
 - SEO
