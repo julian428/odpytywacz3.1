@@ -1,8 +1,8 @@
 import MainNav from "./components/MainNav";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
-import { prisma } from "./db";
 
 import "./globals.css";
+import { notFound } from "next/navigation";
 
 export const metadata = {
   title: "Odpytywacz",
@@ -13,11 +13,17 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const profilesRes = await fetch("https://odpytywacz.me/api/get-profiles", {
-    method: "POST",
-    next: { revalidate: 10 },
-  });
-  const { profiles } = await profilesRes.json();
+  let profiles = [];
+  try {
+    const profilesRes = await fetch("https://odpytywacz.me/api/get-profiles", {
+      method: "POST",
+      next: { revalidate: 10 },
+    });
+    profiles = await profilesRes.json();
+    profiles = profiles.profiles;
+  } catch (e) {
+    notFound();
+  }
   return (
     <UserProvider>
       <html lang="pl">

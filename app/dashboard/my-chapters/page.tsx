@@ -4,11 +4,16 @@ import { notFound } from "next/navigation";
 import EditChapter from "./components/EditChapter";
 
 export default async function UserChapters() {
-  const chaptersRes = await fetch("https://odpytywacz.me/api/get-chapters", {
-    next: { revalidate: 10 },
-  });
-  const { chapters } = await chaptersRes.json();
-  if (!chapters) notFound();
+  let chapters = [];
+  try {
+    const chaptersRes = await fetch("https://odpytywacz.me/api/get-chapters", {
+      next: { revalidate: 10 },
+    });
+    chapters = await chaptersRes.json();
+    chapters = chapters.chapters;
+  } catch {
+    notFound();
+  }
   return (
     <>
       <article className="flex flex-col gap-2 mt-4 max-h-96 overflow-y-auto scrollbar-none">

@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import ExpTable from "./components/expTable";
 import LikesTable from "./components/likesTable";
 import TimeTable from "./components/timeTable";
@@ -17,23 +18,31 @@ export interface ChapterTimesType {
 }
 
 export default async function ScoreBoardPage() {
-  const chaptersRes = await fetch(
-    "https://odpytywacz.me/api/get-chapterTimes",
-    {
+  let users = [],
+    chaptersTimes = [];
+  try {
+    const chaptersRes = await fetch(
+      "https://odpytywacz.me/api/get-chapterTimes",
+      {
+        method: "POST",
+        next: {
+          revalidate: 10,
+        },
+      }
+    );
+    const usersRes = await fetch("https://odpytywacz.me/api/get-users", {
       method: "POST",
       next: {
         revalidate: 10,
       },
-    }
-  );
-  const usersRes = await fetch("https://odpytywacz.me/api/get-users", {
-    method: "POST",
-    next: {
-      revalidate: 10,
-    },
-  });
-  const { users } = await usersRes.json();
-  const { chaptersTimes } = await chaptersRes.json();
+    });
+    users = await usersRes.json();
+    chaptersTimes = await chaptersRes.json();
+    users = users.users;
+    chaptersTimes = chaptersTimes.chaptersTimes;
+  } catch (e) {
+    notFound();
+  }
 
   return (
     <center className="flex flex-col max-h-[80vh] justify-between gap-4 mt-4 items-center text-center px-2 overflow-y-auto scrollbar-none">

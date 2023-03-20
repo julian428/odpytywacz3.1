@@ -41,12 +41,20 @@ function shuffle(array: any[]) {
 }
 
 export default async function Chapter({ params }: Props) {
-  let chapterRes = await fetch("https://odpytywacz.me/api/get-chapter", {
-    method: "POST",
-    body: JSON.stringify({ chapterId: params.slug.split("_")[2] }),
-    next: { revalidate: 10 },
-  });
-  let { chapter } = await chapterRes.json();
+  let chapter = {
+    owned_questions: [] as QuestionType[],
+    id: "",
+    title: "",
+  };
+  try {
+    const chapterRes = await fetch("https://odpytywacz.me/api/get-chapter", {
+      method: "POST",
+      body: JSON.stringify({ chapterId: params.slug.split("_")[2] }),
+      next: { revalidate: 10 },
+    });
+    const parsedChapter = await chapterRes.json();
+    chapter = parsedChapter.chapter;
+  } catch (e) {}
   if (!chapter) notFound();
   if (chapter.owned_questions.length < 1) {
     return (

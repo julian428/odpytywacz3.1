@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import ChapterCard from "./components/ChapterCard";
 
 export interface ChapterCardType {
@@ -21,10 +22,16 @@ export interface ChapterCardType {
 }
 
 export default async function LandingPage() {
-  const chaptersRes = await fetch("https://odpytywacz.me/api/get-chapters", {
-    next: { revalidate: 10 },
-  });
-  const { chapters } = await chaptersRes.json();
+  let chapters = [];
+  try {
+    const chaptersRes = await fetch("https://odpytywacz.me/api/get-chapters", {
+      next: { revalidate: 10 },
+    });
+    chapters = await chaptersRes.json();
+    chapters = chapters.chapters;
+  } catch (e) {
+    notFound();
+  }
   return (
     <>
       <article className="flex flex-col gap-4 mt-2 max-h-[90vh] overflow-y-auto scrollbar-none">

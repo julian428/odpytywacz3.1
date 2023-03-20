@@ -6,7 +6,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method !== "POST")
-    return res.status(400).json("Non existing endpoint");
+    return res.status(400).json({ message: "Non existing endpoint" });
 
   try {
     const profiles = await prisma.profile.findMany({
