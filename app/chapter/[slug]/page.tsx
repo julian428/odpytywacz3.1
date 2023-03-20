@@ -41,7 +41,7 @@ function shuffle(array: any[]) {
 }
 
 export default async function Chapter({ params }: Props) {
-  let chapterRes = await fetch("http://localhost:3000/api/get-chapter", {
+  let chapterRes = await fetch("https://odpytywacz.me/api/get-chapter", {
     method: "POST",
     body: JSON.stringify({ chapterId: params.slug.split("_")[2] }),
     next: { revalidate: 10 },

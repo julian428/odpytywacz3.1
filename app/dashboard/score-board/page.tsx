@@ -18,7 +18,7 @@ export interface ChapterTimesType {
 
 export default async function ScoreBoardPage() {
   const chaptersRes = await fetch(
-    "http://localhost:3000/api/get-chapterTimes",
+    "https://odpytywacz.me/api/get-chapterTimes",
     {
       method: "POST",
       next: {
@@ -26,7 +26,7 @@ export default async function ScoreBoardPage() {
       },
     }
   );
-  const usersRes = await fetch("http://localhost:3000/api/get-users", {
+  const usersRes = await fetch("https://odpytywacz.me/api/get-users", {
     method: "POST",
     next: {
       revalidate: 10,

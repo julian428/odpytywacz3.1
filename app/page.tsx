@@ -21,7 +21,7 @@ export interface ChapterCardType {
 }
 
 export default async function LandingPage() {
-  const chaptersRes = await fetch("http://localhost:3000/api/get-chapters", {
+  const chaptersRes = await fetch("https://odpytywacz.me/api/get-chapters", {
     next: { revalidate: 10 },
   });
   const { chapters } = await chaptersRes.json();

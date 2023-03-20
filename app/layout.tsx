@@ -13,7 +13,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const profilesRes = await fetch("http://localhost:3000/api/get-profiles", {
+  const profilesRes = await fetch("https://odpytywacz.me/api/get-profiles", {
     method: "POST",
     next: { revalidate: 10 },
   });

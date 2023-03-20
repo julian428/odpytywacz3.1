@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import EditChapter from "./components/EditChapter";
 
 export default async function UserChapters() {
-  const chaptersRes = await fetch("http://localhost:3000/api/get-chapters", {
+  const chaptersRes = await fetch("https://odpytywacz.me/api/get-chapters", {
     next: { revalidate: 10 },
   });
   const { chapters } = await chaptersRes.json();
