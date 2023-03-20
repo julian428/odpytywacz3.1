@@ -3,7 +3,15 @@ import { AiOutlineSearch as Logo } from "react-icons/ai";
 import RefreshButton from "../ui/refresh";
 import MenuLooks from "./MenuLooks";
 
-export default function MainNav({ profiles }: any) {
+interface Props {
+  profiles: {
+    email: string;
+    nickname: string;
+    exp: number;
+  }[];
+}
+
+export default function MainNav({ profiles }: Props) {
   return (
     <nav className="flex justify-between px-2 items-center py-1">
       <Link

@@ -32,6 +32,7 @@ export default function EditChapter({ chapter }: Props) {
         userName: user?.nickname,
       }),
     });
+    setLoading(false);
     router.refresh();
   };
 

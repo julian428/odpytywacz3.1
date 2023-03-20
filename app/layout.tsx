@@ -8,30 +8,16 @@ export const metadata = {
   title: "Odpytywacz",
 };
 
-async function getUserProfile() {
-  try {
-    const profiles = await prisma.profile.findMany({
-      select: {
-        email: true,
-        nickname: true,
-        exp: true,
-      },
-    });
-    return profiles;
-  } catch (e) {
-    console.warn(e);
-    return [];
-  }
-}
-
-export const revalidate = 0;
-
 export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const profiles = await getUserProfile();
+  const profilesRes = await fetch("http://localhost:3000/api/get-profiles", {
+    method: "POST",
+    next: { revalidate: 10 },
+  });
+  const { profiles } = await profilesRes.json();
   return (
     <UserProvider>
       <html lang="pl">

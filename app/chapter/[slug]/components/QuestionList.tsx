@@ -42,7 +42,6 @@ export function wordCheck(
   const value = answearRef.value.trim();
   if (value === question.answear) {
     answearRef.className += " text-10";
-    console.log(answearRef.className);
     setPoints((state) => ({ ...state, correct: state.correct + 1 }));
   } else {
     answearRef.className += " text-red-500";

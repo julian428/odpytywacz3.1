@@ -15,15 +15,15 @@ interface Props {
 }
 
 export default function Likes({ likes, chapterId }: Props) {
-  const { user, error, isLoading } = useUser();
+  const { user } = useUser();
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const likeHandler = async () => {
     if (!user || loading) return;
-    console.log("liking");
+    router.refresh();
     setLoading(true);
-    const res = await fetch("/api/handle-like", {
+    const res = fetch("/api/handle-like", {
       method: "POST",
       body: JSON.stringify({
         isLiked: isLiked().isLiked,
@@ -32,8 +32,8 @@ export default function Likes({ likes, chapterId }: Props) {
         owner: user.nickname,
       }),
     });
-    router.refresh();
     setLoading(false);
+    router.refresh();
   };
 
   const isLiked = (): { isLiked: boolean; likeId: string } => {

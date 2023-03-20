@@ -1,12 +1,13 @@
-import { ChapterCardType, getChapters } from "@/app/page";
+import { ChapterCardType } from "@/app/page";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import EditChapter from "./components/EditChapter";
 
-export const revalidate = 0;
-
 export default async function UserChapters() {
-  const chapters = await getChapters();
+  const chaptersRes = await fetch("http://localhost:3000/api/get-chapters", {
+    next: { revalidate: 10 },
+  });
+  const { chapters } = await chaptersRes.json();
   if (!chapters) notFound();
   return (
     <>

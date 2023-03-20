@@ -23,8 +23,7 @@ export default async function handler(
           chapter_id: data.chapterId,
         },
       });
-      res.revalidate("/dashboard/score-board");
-      return res.status(201).json({ message: "Added time to database" });
+      return res.json({ message: "Added time to database" });
     }
     let worstTime = { time: chapterTimes[0].time, id: chapterTimes[0].id };
     for (let i = 1; i < chapterTimes.length; i++) {
@@ -44,8 +43,7 @@ export default async function handler(
       },
     });
 
-    res.revalidate("/dashboard/score-board");
-    return res.status(200).json({ message: "Added time" });
+    return res.json({ message: "Added time" });
   } catch (e) {
     console.log(e);
     return res.status(500).json({ message: "something went wrong" });

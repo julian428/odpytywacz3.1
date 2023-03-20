@@ -49,9 +49,7 @@ export default async function handler(
       )
     );
 
-    res.revalidate("/dashboard/my-chapters");
-    res.revalidate("/");
-    return res.status(201).json({ message: "successfully updated." });
+    return res.json({ message: "successfully updated." });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ message: "Something went wrong" });

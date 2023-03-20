@@ -7,8 +7,8 @@ export default async function handler(
 ) {
   if (req.method !== "POST")
     return res.status(400).json({ message: "non existing endpoint" });
+  const data = JSON.parse(req.body);
   try {
-    const data = JSON.parse(req.body);
     const chapter = await prisma.chapter.create({
       data: {
         title: data.title,
@@ -26,9 +26,7 @@ export default async function handler(
         })),
       });
     }
-    res.revalidate("/");
-    res.revalidate("/dashboard/my-chapters");
-    return res.status(201).json({ message: "Success" });
+    return res.json({ message: "Success" });
   } catch (e) {
     console.log(e);
     return res.status(500).json({ message: "something went wrong" });

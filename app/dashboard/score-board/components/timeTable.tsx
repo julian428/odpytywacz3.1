@@ -1,6 +1,6 @@
 "use client";
 import StandardSelect from "@/app/ui/select";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ChapterTimesType } from "../page";
 import TableScores from "./tableScores";
 
@@ -10,7 +10,7 @@ interface Props {
 
 export default function TimeTable({ chaptersTimes }: Props) {
   const chapterRef = useRef<HTMLSelectElement>(null);
-  const [currentChapter, setCurrentCHapter] = useState(chaptersTimes[0]);
+  const [currentChapter, setCurrentChapter] = useState(chaptersTimes[0]);
 
   const onChapterChangeHandler = () => {
     const selectedChapterId = chapterRef.current!.value;
@@ -19,7 +19,7 @@ export default function TimeTable({ chaptersTimes }: Props) {
         return chapterTime.id === selectedChapterId;
       }
     );
-    setCurrentCHapter(newCurrentChapter[0]);
+    setCurrentChapter(newCurrentChapter[0]);
   };
 
   return (

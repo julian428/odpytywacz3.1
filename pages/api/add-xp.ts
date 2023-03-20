@@ -23,8 +23,7 @@ export default async function handler(
           exp: data.xp,
         },
       });
-      res.revalidate("/");
-      return res.status(201).json({ message: "created profile and added xp" });
+      return res.json({ message: "created profile and added xp" });
     }
     if (data.xp === 0)
       return res.status(200).json({ message: "Nothing to update" });
@@ -36,8 +35,7 @@ export default async function handler(
         exp: profile.exp + data.xp,
       },
     });
-    res.revalidate("/");
-    return res.status(200).json({ message: "Updated the xp" });
+    return res.json({ message: "Updated the xp", revalidated: true });
   } catch (e) {
     console.log(e);
     return res.status(500).json({ message: "Something went wrong" });

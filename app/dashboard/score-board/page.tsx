@@ -1,4 +1,3 @@
-import { prisma } from "@/app/db";
 import ExpTable from "./components/expTable";
 import LikesTable from "./components/likesTable";
 import TimeTable from "./components/timeTable";
@@ -17,59 +16,30 @@ export interface ChapterTimesType {
   }[];
 }
 
-async function getChapters() {
-  try {
-    const chaptersTimes = await prisma.chapter.findMany({
-      select: {
-        times: {
-          select: {
-            id: true,
-            nickname: true,
-            time: true,
-          },
-        },
-        id: true,
-        title: true,
-        owner: true,
-        likes: {
-          select: {
-            id: true,
-          },
-        },
-      },
-    });
-    return chaptersTimes;
-  } catch (e) {
-    return [];
-  }
-}
-
-async function getUsers() {
-  try {
-    const users = await prisma.profile.findMany({
-      select: {
-        id: true,
-        nickname: true,
-        exp: true,
-      },
-    });
-    return users;
-  } catch (e) {
-    console.log(e);
-    return [];
-  }
-}
-
-export const revalidate = 0;
-
 export default async function ScoreBoardPage() {
-  const chapters = await getChapters();
-  const users = await getUsers();
+  const chaptersRes = await fetch(
+    "http://localhost:3000/api/get-chapterTimes",
+    {
+      method: "POST",
+      next: {
+        revalidate: 10,
+      },
+    }
+  );
+  const usersRes = await fetch("http://localhost:3000/api/get-users", {
+    method: "POST",
+    next: {
+      revalidate: 10,
+    },
+  });
+  const { users } = await usersRes.json();
+  const { chaptersTimes } = await chaptersRes.json();
+
   return (
     <center className="flex flex-col max-h-[80vh] justify-between gap-4 mt-4 items-center text-center px-2 overflow-y-auto scrollbar-none">
-      <TimeTable chaptersTimes={chapters} />
+      <TimeTable chaptersTimes={chaptersTimes} />
       <hr />
-      <LikesTable chapters={chapters} />
+      <LikesTable chapters={chaptersTimes} />
       <hr />
       <ExpTable users={users} />
     </center>

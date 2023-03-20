@@ -1,5 +1,4 @@
 import ChapterCard from "./components/ChapterCard";
-import { prisma } from "./db";
 
 export interface ChapterCardType {
   id: string;
@@ -21,49 +20,11 @@ export interface ChapterCardType {
   }[];
 }
 
-export async function getChapters(): Promise<ChapterCardType[]> {
-  try {
-    const chapters = await prisma.chapter.findMany({
-      where: {
-        public: true,
-      },
-      select: {
-        id: true,
-        title: true,
-        description: true,
-        owner: true,
-        section: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
-        likes: {
-          select: {
-            id: true,
-            user: true,
-          },
-        },
-        owned_questions: {
-          select: {
-            id: true,
-            answear: true,
-            question: true,
-          },
-        },
-      },
-    });
-    return chapters;
-  } catch (e) {
-    console.log(e);
-    return [];
-  }
-}
-
-export const revalidate = 0;
-
 export default async function LandingPage() {
-  const chapters = await getChapters();
+  const chaptersRes = await fetch("http://localhost:3000/api/get-chapters", {
+    next: { revalidate: 10 },
+  });
+  const { chapters } = await chaptersRes.json();
   return (
     <>
       <article className="flex flex-col gap-4 mt-2 max-h-[90vh] overflow-y-auto scrollbar-none">

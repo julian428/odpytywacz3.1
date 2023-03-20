@@ -20,36 +20,6 @@ export async function generateMetadata({ params }: Props): Promise<any> {
   return { title: `${titleArray[1]} | ${titleArray[0]}` };
 }
 
-async function getChapter(chapterId: string) {
-  try {
-    const chapter = await prisma.chapter.findUnique({
-      where: {
-        id: chapterId,
-      },
-      select: {
-        id: true,
-        owned_questions: {
-          select: {
-            id: true,
-            question: true,
-            answear: true,
-          },
-        },
-        title: true,
-        section: {
-          select: {
-            id: true,
-            name: true,
-          },
-        },
-      },
-    });
-    return chapter;
-  } catch {
-    notFound();
-  }
-}
-
 function shuffle(array: any[]) {
   let currentIndex = array.length,
     randomIndex;
@@ -70,10 +40,13 @@ function shuffle(array: any[]) {
   return array;
 }
 
-export const revalidate = 0;
-
 export default async function Chapter({ params }: Props) {
-  let chapter = await getChapter(params.slug.split("_")[2]);
+  let chapterRes = await fetch("http://localhost:3000/api/get-chapter", {
+    method: "POST",
+    body: JSON.stringify({ chapterId: params.slug.split("_")[2] }),
+    next: { revalidate: 10 },
+  });
+  let { chapter } = await chapterRes.json();
   if (!chapter) notFound();
   if (chapter.owned_questions.length < 1) {
     return (

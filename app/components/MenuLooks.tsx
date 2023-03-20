@@ -4,7 +4,11 @@ import { useEffect, useState } from "react";
 import { RxHamburgerMenu as Menu } from "react-icons/rx";
 
 interface Props {
-  profiles: { email: string; nickname: string; exp: number }[];
+  profiles: {
+    email: string;
+    nickname: string;
+    exp: number;
+  }[];
 }
 
 export function abbreviateNumber(value: number) {
@@ -34,15 +38,14 @@ export function abbreviateNumber(value: number) {
 export default function MenuLooks({ profiles }: Props) {
   const { user } = useUser();
   const [xp, setXp] = useState(0);
+
+  const profile = profiles.find((profile) => profile.email === user?.email);
+
   useEffect(() => {
-    if (!user || !profiles || !profiles.length) return;
-    setXp(
-      profiles.filter((profile: any) => profile.email === user?.email)[0].exp
-    );
-  }, [user, profiles]);
+    if (!user || !profile) return;
+    setXp(profile.exp);
+  }, [user, profile]);
   if (user) {
-    const defaultPic =
-      "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.YAJlHz4zchNP5zIfsajE9AHaFr%26pid%3DApi&f=1&ipt=53dea86cb4c1e9ea32515d1038ff20c2bca153bdccce8e96423e7b0e1363fe1d&ipo=images";
     return (
       <section className="w-10 relative">
         <div className="absolute -top-[3px] -right-[3px] text-xs text-10 bg-60 w-4 h-4 rounded-full flex justify-center items-center">
@@ -50,7 +53,7 @@ export default function MenuLooks({ profiles }: Props) {
         </div>
         <img
           className="rounded-full"
-          src={user.picture || defaultPic}
+          src={user.picture || ""}
           alt="profile picture"
         />
       </section>
