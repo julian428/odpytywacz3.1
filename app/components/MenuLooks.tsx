@@ -1,5 +1,6 @@
 "use client";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { RxHamburgerMenu as Menu } from "react-icons/rx";
 
@@ -48,7 +49,7 @@ export default function MenuLooks({ profiles }: Props) {
   if (user) {
     return (
       <section className="w-10 relative">
-        <div className="absolute -top-[3px] -right-[3px] text-xs text-10 bg-60 w-4 h-4 rounded-full flex justify-center items-center">
+        <div className="absolute -top-[6px] -right-[6px] text-xs text-10 bg-60 w-6 h-6 rounded-full flex justify-center items-center">
           <p>{abbreviateNumber(xp)}</p>
         </div>
         <img
