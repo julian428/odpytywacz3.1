@@ -6,6 +6,8 @@ import { notFound } from "next/navigation";
 
 export const metadata = {
   title: "Odpytywacz",
+  description:
+    "Odpytywacz to strona która łączy osoby chętne do nauki razem. Używając odpytywacza możesz robić rozdziały stworzone przez innych użytkowników jak i przez ciebie.",
 };
 
 export default async function RootLayout({
