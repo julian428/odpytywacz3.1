@@ -17,7 +17,7 @@ export default function ChapterCard({ chapter }: Props) {
         <p>{chapter.section.name}</p>
       </Link>
       <section className="flex justify-between gap-8">
-        <aside>{chapter.description}</aside>
+        <p>{chapter.description}</p>
         <aside>
           <section>{chapter.owner}</section>
           <Likes
