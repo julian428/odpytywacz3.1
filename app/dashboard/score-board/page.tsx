@@ -31,7 +31,7 @@ export default async function ScoreBoardPage() {
       }
     );
     const usersRes = await fetch("https://odpytywacz.me/api/get-users", {
-      method: "POST",
+      method: "GET",
       next: {
         revalidate: 10,
       },
@@ -41,6 +41,7 @@ export default async function ScoreBoardPage() {
     users = users.users;
     chaptersTimes = chaptersTimes.chaptersTimes;
   } catch (e) {
+    console.log(e);
     notFound();
   }
 
