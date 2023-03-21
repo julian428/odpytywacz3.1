@@ -41,7 +41,7 @@ export default function EditChapter({ chapter }: Props) {
   }
 
   return (
-    <section className="flex justify-between gap-32 items-baseline mx-2 px-2 pb-1 border-b">
+    <section className="flex max-w-[95vw] justify-between gap-32 items-baseline mx-2 px-2 pb-1 border-b">
       <h2 className="capitalize text-xl truncate w-36">{chapter.title}</h2>
       <aside className="flex gap-1">
         <StandardModal
