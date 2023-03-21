@@ -23,7 +23,7 @@ export default function MainNav({ profiles }: Props) {
         <h2 className="text-xs">Odpytywacz</h2>
       </Link>
       <section className="flex gap-4">
-        <RefreshButton />
+        {/* <RefreshButton /> */}
         <Link
           href="/dashboard"
           replace
