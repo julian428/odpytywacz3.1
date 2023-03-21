@@ -1,5 +1,7 @@
 "use client";
 
+import { notFound } from "next/navigation";
+
 interface Props {
   users: {
     id: string;
@@ -9,6 +11,7 @@ interface Props {
 }
 
 export default function ExpScore({ users }: Props) {
+  if (users.length < 1) notFound();
   return (
     <table className="w-full max-w-xs">
       <tr>

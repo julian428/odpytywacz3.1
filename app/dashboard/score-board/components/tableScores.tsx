@@ -1,5 +1,6 @@
 "use client";
 
+import { notFound } from "next/navigation";
 import { ChapterTimesType } from "../page";
 
 interface Props {
@@ -24,6 +25,9 @@ export default function TableScores({ chapterTimes }: Props) {
       }
     }
   }
+
+  if (times.length < 1) notFound();
+
   return (
     <table className="w-full max-w-xs">
       <tr>

@@ -1,3 +1,5 @@
+import { notFound } from "next/navigation";
+
 interface Props {
   chapters: {
     id: string;
@@ -8,6 +10,7 @@ interface Props {
 }
 
 export default function LikesScore({ chapters }: Props) {
+  if (chapters.length < 1) notFound();
   return (
     <table className="w-full max-w-xs">
       <tr>
