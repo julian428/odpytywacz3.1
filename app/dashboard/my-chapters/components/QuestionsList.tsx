@@ -63,7 +63,7 @@ export default function QuestionsList({
           <AddIcon />
         </button>
       </h2>
-      <article className="flex flex-col gap-2 max-h-96 overflow-y-auto scrollbar-none">
+      <article className="flex max-h-[35vh] flex-col gap-2 items-center overflow-y-auto scrollbar-none">
         {editableQuestions.map((q: any, i: number) => {
           return (
             <EditQuestion

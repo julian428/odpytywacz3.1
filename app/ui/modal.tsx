@@ -26,6 +26,8 @@ export default function StandardModal({
     background: "#555555",
     padding: "1rem",
     textAlign: "center",
+    maxHeight: "90vh",
+    maxWidth: "85vw",
   };
   const [open, setIsOpen] = useState(false);
   const handleOpen = () => {

@@ -13,10 +13,10 @@ export default function ChapterCard({ chapter }: Props) {
         className="flex flex-col gap-1"
         href={`/chapter/${chapter.section.name}_${chapter.title}_${chapter.id}`}
       >
-        <h2 className="text-3xl">{chapter.title}</h2>
+        <h2 className="text-3xl truncate w-full">{chapter.title}</h2>
         <p>{chapter.section.name}</p>
       </Link>
-      <section className="flex justify-between">
+      <section className="flex justify-between gap-8">
         <aside>{chapter.description}</aside>
         <aside>
           <section>{chapter.owner}</section>
