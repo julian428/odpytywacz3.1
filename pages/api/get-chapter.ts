@@ -7,7 +7,7 @@ export default async function handler(
 ) {
   if (req.method !== "POST")
     return res.status(400).json({ message: "Non existing endpoint" });
-  const data = await JSON.parse(req.body);
+  const data = req.body;
 
   try {
     const chapter = await prisma.chapter.findUnique({
