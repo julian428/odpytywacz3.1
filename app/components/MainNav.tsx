@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { AiOutlineSearch as Logo } from "react-icons/ai";
-import RefreshButton from "../ui/refresh";
 import MenuLooks from "./MenuLooks";
 
 interface Props {
