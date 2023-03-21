@@ -39,8 +39,8 @@ export function wordCheck(
   >
 ) {
   if (answearRef.disabled) return;
-  const value = answearRef.value.trim();
-  if (value === question.answear) {
+  const value = answearRef.value.trim().toLowerCase();
+  if (value === question.answear.toLowerCase()) {
     answearRef.className += " text-10";
     setPoints((state) => ({ ...state, correct: state.correct + 1 }));
   } else {
