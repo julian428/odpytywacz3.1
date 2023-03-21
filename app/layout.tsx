@@ -6,6 +6,12 @@ import { notFound } from "next/navigation";
 
 export const metadata = {
   title: "Odpytywacz | Strona główna",
+  icons: {
+    icon: "@/public/favicon-32x32.png",
+    apple: "@/public/apple-touch-icon.png",
+  },
+  manifest: "@/public/site.webmanifest",
+  themeColor: "#000000",
   description:
     "Odpytywacz to strona która łączy osoby chętne do nauki. Używając odpytywacza możesz robić rozdziały stworzone przez innych użytkowników jak i przez ciebie.",
 };
