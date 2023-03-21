@@ -8,6 +8,7 @@ interface Props {
     answear: string;
     question: string;
   };
+  isLoading: boolean;
   index: number;
   changeHandler: (event: ChangeEvent, index: number) => void;
   removeHandler: (event: MouseEvent, index: number) => void;
@@ -16,6 +17,7 @@ interface Props {
 export default function EditQuestion({
   question,
   index,
+  isLoading,
   changeHandler,
   removeHandler,
 }: Props) {
@@ -27,6 +29,7 @@ export default function EditQuestion({
           onChange: (event: ChangeEvent) => changeHandler(event, index),
           value: question.question,
           name: "question",
+          disabled: isLoading,
         }}
       />
       <StandardSmallInput
@@ -35,10 +38,12 @@ export default function EditQuestion({
           onChange: (event: ChangeEvent) => changeHandler(event, index),
           value: question.answear,
           name: "answear",
+          disabled: isLoading,
         }}
       />
       <button
         type="button"
+        disabled={isLoading}
         className="w-8 h-8 border border-red-500 text-red-500 rounded flex justify-center items-center"
         onClick={(event: MouseEvent) => removeHandler(event, index)}
       >

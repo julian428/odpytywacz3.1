@@ -13,6 +13,8 @@ export default function EditForm({ chapter }: Props) {
   const [editableQuestions, setEditableQuestions] = useState(
     chapter.owned_questions
   );
+  const [deleted, setDeleted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const titleRef = useRef<HTMLInputElement>(null);
   const descriptionRef = useRef<HTMLTextAreaElement>(null);
@@ -22,12 +24,14 @@ export default function EditForm({ chapter }: Props) {
       console.warn("Can't update chapter without a title.");
       return;
     }
+    setLoading(true);
 
     const submitData = {
       chapterId: chapter.id,
       title: titleRef.current?.value,
       description: descriptionRef.current?.value || "",
       questions: editableQuestions,
+      deleted,
     };
 
     const response = await fetch("/api/update-chapter", {
@@ -42,18 +46,23 @@ export default function EditForm({ chapter }: Props) {
     >
       <StandardInput
         required
-        params={{ defaultValue: chapter.title }}
+        params={{ defaultValue: chapter.title, disabled: loading }}
         ref={titleRef}
       />
       <StandardTextarea
         ref={descriptionRef}
-        params={{ defaultValue: chapter.description }}
+        params={{ defaultValue: chapter.description, disabled: loading }}
       />
       <QuestionsList
         editableQuestions={editableQuestions}
         setEditableQuestions={setEditableQuestions}
+        setDeleted={setDeleted}
+        isLoading={loading}
       />
-      <StandardSubmit label="Zapisz" />
+      <StandardSubmit
+        loading={loading}
+        label="Zapisz"
+      />
     </form>
   );
 }

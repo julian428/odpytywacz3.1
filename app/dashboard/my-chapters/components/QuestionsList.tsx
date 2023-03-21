@@ -3,6 +3,8 @@ import EditQuestion from "./EditQuestion";
 import { BiMessageAltAdd as AddIcon } from "react-icons/bi";
 
 interface Props {
+  isLoading: boolean;
+  setDeleted: Dispatch<SetStateAction<boolean>>;
   editableQuestions: {
     id: string;
     answear: string;
@@ -20,6 +22,8 @@ interface Props {
 }
 
 export default function QuestionsList({
+  isLoading,
+  setDeleted,
   editableQuestions,
   setEditableQuestions,
 }: Props) {
@@ -42,6 +46,7 @@ export default function QuestionsList({
   const handleRemoveQuestion = (event: MouseEvent, index: number) => {
     let data = [...editableQuestions];
     data.splice(index, 1);
+    setDeleted(true);
     setEditableQuestions(data);
   };
 
@@ -51,6 +56,7 @@ export default function QuestionsList({
         Pytania: {editableQuestions.length}
         <button
           type="button"
+          disabled={isLoading}
           className="text-10 text-2xl"
           onClick={handleAddQuestion}
         >
@@ -63,6 +69,7 @@ export default function QuestionsList({
             <EditQuestion
               question={q}
               key={q.id}
+              isLoading={isLoading}
               changeHandler={handleQuestionChange}
               removeHandler={handleRemoveQuestion}
               index={i}
