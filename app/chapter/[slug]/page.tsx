@@ -48,14 +48,17 @@ export default async function Chapter({ params }: Props) {
   } = { owned_questions: [], id: "", title: "" };
   try {
     const chapterId = params.slug.split("_")[2];
-    const chapterRes = await fetch("http://localhost:3000/api/get-chapter", {
-      method: "POST",
-      next: { revalidate: 10 },
-      body: JSON.stringify({ chapterId }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const chapterRes = await fetch(
+      "https://www.odpytywacz.me/api/get-chapter",
+      {
+        method: "POST",
+        next: { revalidate: 10 },
+        body: JSON.stringify({ chapterId }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
     const parsedChapter = await chapterRes.json();
     chapter = parsedChapter.chapter;
   } catch (e) {
