@@ -130,7 +130,7 @@ export default function AddForm({ sections }: Props) {
           </button>
         </h2>
       </section>
-      <article className="flex flex-col items-center gap-2 max-h-96 overflow-y-auto">
+      <article className="flex flex-col items-center gap-2 max-h-[35vh] scrollbar-none overflow-y-auto">
         {questions.map((question: addQuestion, index) => (
           <Question
             key={index}
