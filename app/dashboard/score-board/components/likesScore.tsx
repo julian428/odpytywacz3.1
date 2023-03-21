@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function LikesScore({ chapters }: Props) {
-  if (chapters.length < 1) notFound();
+  if (!chapters) notFound();
   return (
     <table className="w-full max-w-xs">
       <tr>

@@ -26,7 +26,7 @@ export default function TableScores({ chapterTimes }: Props) {
     }
   }
 
-  if (times.length < 1) notFound();
+  if (!times) notFound();
 
   return (
     <table className="w-full max-w-xs">

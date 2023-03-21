@@ -11,7 +11,7 @@ interface Props {
 }
 
 export default function ExpScore({ users }: Props) {
-  if (users.length < 1) notFound();
+  if (!users) notFound();
   return (
     <table className="w-full max-w-xs">
       <tr>
