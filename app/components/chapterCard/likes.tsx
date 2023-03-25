@@ -21,7 +21,6 @@ export default function Likes({ likes, chapterId }: Props) {
 
   const likeHandler = async () => {
     if (!user || loading) return;
-    router.refresh();
     setLoading(true);
     const res = fetch("/api/handle-like", {
       method: "POST",
@@ -33,7 +32,6 @@ export default function Likes({ likes, chapterId }: Props) {
       }),
     });
     setLoading(false);
-    router.refresh();
   };
 
   const isLiked = (): { isLiked: boolean; likeId: string } => {
@@ -44,16 +42,15 @@ export default function Likes({ likes, chapterId }: Props) {
   };
 
   return (
-    <button
-      onClick={likeHandler}
-      className={"text-10 flex items-center gap-2 z-10"}
-    >
-      {isLiked().isLiked ? (
-        <FilledHeartIcon className={loading ? "animate-ping" : ""} />
-      ) : (
-        <EmptyHeartIcon className={loading ? "animate-ping" : ""} />
-      )}
-      {likes.length}
-    </button>
+    <form onSubmit={likeHandler}>
+      <button className={`text-10 flex items-center gap-2 z-10`}>
+        {isLiked().isLiked ? (
+          <FilledHeartIcon className={loading ? "animate-spin" : ""} />
+        ) : (
+          <EmptyHeartIcon className={loading ? "animate-spin" : ""} />
+        )}
+        {likes.length}
+      </button>
+    </form>
   );
 }

@@ -17,7 +17,9 @@ export default function ChapterCard({ chapter }: Props) {
         <p>{chapter.section.name}</p>
       </Link>
       <section className="flex justify-between gap-8">
-        <p>{chapter.description}</p>
+        <p className="max-h-12 overflow-y-auto scrollbar-none">
+          {chapter.description}
+        </p>
         <aside>
           <section>{chapter.owner}</section>
           <Likes
