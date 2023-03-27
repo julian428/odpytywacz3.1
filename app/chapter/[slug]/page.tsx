@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation";
-import { PrismaClient } from "@prisma/client";
 import QuestionList from "./components/QuestionList";
-import { prisma } from "@/app/db";
 
 interface Props {
   params: {
@@ -18,10 +16,7 @@ export interface QuestionType {
 export async function generateMetadata({ params }: Props): Promise<any> {
   const titleArray = params.slug.split("_");
   return {
-    title: `${titleArray[1].replaceAll(
-      "%20",
-      " "
-    )} | ${titleArray[0].replaceAll("%20", " ")}`,
+    title: `${decodeURI(titleArray[1])} | ${decodeURI(titleArray[0])}`,
   };
 }
 
