@@ -8,7 +8,7 @@ interface Props {
 
 export default function ChapterCard({ chapter }: Props) {
   return (
-    <section className=" w-80 h-36 bg-30 flex flex-col gap-4 rounded text-30 px-4 py-1 text-center">
+    <section className=" w-80 relative h-36 bg-30 flex flex-col gap-4 rounded text-30 px-4 py-1 text-center">
       <Link
         className="flex flex-col gap-1"
         href={`/chapter/${chapter.section.name}_${chapter.title}_${chapter.id}`}
@@ -16,17 +16,14 @@ export default function ChapterCard({ chapter }: Props) {
         <h2 className="text-3xl truncate w-full">{chapter.title}</h2>
         <p>{chapter.section.name}</p>
       </Link>
-      <section className="flex justify-between gap-8">
-        <p className="max-h-12 overflow-y-auto scrollbar-none">
+      <section className="flex justify-between gap-8 w-full">
+        <p className="max-h-12 overflow-y-auto scrollbar-none text-left">
           {chapter.description}
         </p>
-        <aside>
-          <section>{chapter.owner}</section>
-          <Likes
-            likes={chapter.likes}
-            chapterId={chapter.id}
-          />
-        </aside>
+        <Likes
+          likes={chapter.likes}
+          chapterId={chapter.id}
+        />
       </section>
     </section>
   );
