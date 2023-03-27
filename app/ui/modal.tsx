@@ -1,6 +1,6 @@
 "use client";
 import { Modal, Box, Typography } from "@mui/material";
-import { ReactNode, RefObject, useEffect, useState } from "react";
+import { useState } from "react";
 
 interface Props {
   Label?: React.ElementType;

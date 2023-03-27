@@ -1,8 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-
 interface Props {
   setting: { label: string; name: string; options: string[] };
 }

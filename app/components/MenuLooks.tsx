@@ -1,6 +1,5 @@
 "use client";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { RxHamburgerMenu as Menu } from "react-icons/rx";
 

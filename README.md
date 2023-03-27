@@ -1,7 +1,5 @@
 #TODO
 
-- fix the csv utf-8 (words can't have latin characters)
-
 - testing
 - optimizing
 - SEO
