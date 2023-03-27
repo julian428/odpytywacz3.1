@@ -17,8 +17,12 @@ export default function CsvPreview({ csvData }: { csvData: string }) {
           if (index > 5) return <></>;
           return (
             <tr>
-              <td className="border px-4 py-1 w-1/2">{line[0]}</td>
-              <td className="border px-4 py-1 w-1/2">{line[1]}</td>
+              <td className="border px-4 py-1 max-w-[140px] truncate">
+                {line[0]}
+              </td>
+              <td className="border px-4 py-1 max-w-[140px] truncate">
+                {line[1]}
+              </td>
             </tr>
           );
         })}

@@ -17,6 +17,9 @@ export default function Question({ question, setPoints }: Props) {
   const answearRef = useRef<HTMLInputElement>(null);
 
   const blurHandler = () => {
+    if (!localStorage.getItem("word-checking")) {
+      localStorage.setItem("word-checking", "manual");
+    }
     if (localStorage.getItem("word-checking") === "manual") return;
     if (!answearRef.current!.value) return;
     wordCheck(question, answearRef.current, setPoints);

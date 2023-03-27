@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface Props {
@@ -7,17 +8,6 @@ interface Props {
 }
 
 export default function Setting({ setting }: Props) {
-  //!temporary solution
-  const [checked, setChecked] = useState<"manual" | "semi-auto" | "auto">(
-    "manual"
-  );
-
-  useEffect(() => {
-    setChecked(
-      localStorage.getItem(setting.name) as "manual" | "semi-auto" | "auto"
-    );
-  }, []);
-
   return (
     <section className="text-center capitalize">
       <h2>{setting.label}</h2>
@@ -33,7 +23,7 @@ export default function Setting({ setting }: Props) {
                 id={option}
                 value={option}
                 name={setting.name}
-                defaultChecked={checked === option}
+                defaultChecked={localStorage.getItem(setting.name) === option}
                 onChange={() => localStorage.setItem(setting.name, option)}
               />
               <label htmlFor={option}>{option}</label>
