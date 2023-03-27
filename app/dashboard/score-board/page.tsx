@@ -26,14 +26,14 @@ export default async function ScoreBoardPage() {
       {
         method: "POST",
         next: {
-          revalidate: 10,
+          revalidate: 1,
         },
       }
     );
     const usersRes = await fetch("https://odpytywacz.me/api/get-users", {
       method: "GET",
       next: {
-        revalidate: 10,
+        revalidate: 1,
       },
     });
     users = await usersRes.json();

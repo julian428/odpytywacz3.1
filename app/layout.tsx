@@ -25,7 +25,7 @@ export default async function RootLayout({
   try {
     const profilesRes = await fetch("https://odpytywacz.me/api/get-profiles", {
       method: "POST",
-      next: { revalidate: 10 },
+      next: { revalidate: 1 },
     });
     profiles = await profilesRes.json();
     profiles = profiles.profiles;

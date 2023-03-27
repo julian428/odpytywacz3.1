@@ -25,7 +25,7 @@ export default async function LandingPage() {
   let chapters = [];
   try {
     const chaptersRes = await fetch("https://odpytywacz.me/api/get-chapters", {
-      next: { revalidate: 10 },
+      next: { revalidate: 1 },
     });
     chapters = await chaptersRes.json();
     chapters = chapters.chapters;

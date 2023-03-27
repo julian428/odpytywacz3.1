@@ -17,7 +17,12 @@ export interface QuestionType {
 
 export async function generateMetadata({ params }: Props): Promise<any> {
   const titleArray = params.slug.split("_");
-  return { title: `${titleArray[1]} | ${titleArray[0]}` };
+  return {
+    title: `${titleArray[1].replaceAll(
+      "%20",
+      " "
+    )} | ${titleArray[0].replaceAll("%20", " ")}`,
+  };
 }
 
 function shuffle(array: any[]) {
@@ -52,7 +57,7 @@ export default async function Chapter({ params }: Props) {
       "https://www.odpytywacz.me/api/get-chapter",
       {
         method: "POST",
-        next: { revalidate: 10 },
+        next: { revalidate: 1 },
         body: JSON.stringify({ chapterId }),
         headers: {
           "Content-Type": "application/json",
