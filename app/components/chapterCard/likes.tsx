@@ -49,6 +49,7 @@ export default function Likes({ likes, chapterId }: Props) {
     <button
       disabled={loading}
       onClick={likeHandler}
+      name="like"
       className="text-10 text-2xl absolute top-2 right-2"
     >
       {liked ? <FilledHeartIcon /> : <EmptyHeartIcon />}
