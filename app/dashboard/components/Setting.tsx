@@ -8,6 +8,14 @@ interface Props {
 }
 
 export default function Setting({ setting }: Props) {
+  const isChecked = (option: string) => {
+    try {
+      const is = localStorage.getItem(setting.name) === option;
+      return is;
+    } catch (e) {
+      return false;
+    }
+  };
   return (
     <section className="text-center capitalize">
       <h2>{setting.label}</h2>
@@ -23,7 +31,7 @@ export default function Setting({ setting }: Props) {
                 id={option}
                 value={option}
                 name={setting.name}
-                defaultChecked={localStorage.getItem(setting.name) === option}
+                defaultChecked={isChecked(option)}
                 onChange={() => localStorage.setItem(setting.name, option)}
               />
               <label htmlFor={option}>{option}</label>

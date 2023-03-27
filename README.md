@@ -1,6 +1,5 @@
 #TODO
 
-- fix the liking delay (make it client side mostly)
 - fix the csv utf-8 (words can't have latin characters)
 
 - testing
@@ -9,3 +8,5 @@
 
 - premium user (max 5 chapters for non premium and no chapter download)
 - add stripe
+- import questions from csv
+- add chapter filtering
