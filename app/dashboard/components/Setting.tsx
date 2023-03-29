@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect } from "react";
+
 interface Props {
   setting: { label: string; name: string; options: string[] };
 }
@@ -13,6 +15,13 @@ export default function Setting({ setting }: Props) {
       return false;
     }
   };
+
+  useEffect(() => {
+    if (!localStorage.getItem(setting.name)) {
+      localStorage.setItem(setting.name, setting.options[0]);
+    }
+  }, []);
+
   return (
     <section className="text-center capitalize">
       <h2>{setting.label}</h2>
