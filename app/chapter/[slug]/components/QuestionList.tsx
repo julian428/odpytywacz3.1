@@ -159,7 +159,9 @@ export default function QuestionList({ chapter }: Props) {
         title={`Zakończyłeś ${chapter.title}`}
         text={
           user
-            ? `Zdobyłeś ${points.correct}xp w ${time / 1000}s`
+            ? `Zdobyłeś ${points.correct}xp (${Math.floor(
+                (points.correct / chapter.owned_questions.length) * 100
+              )}%) w ${time / 1000}s`
             : "Zaloguj się żeby zdobywać xp"
         }
       />
